@@ -1,3 +1,7 @@
-Languages: HTML, CSS, Javascript 
 
-Design: Figma, Canva
+
+My Stack:
+
+Languages: HTML, CSS, Javascript, Python
+
+Technologies I like: Figma, Canva, VSCode,Devtools
