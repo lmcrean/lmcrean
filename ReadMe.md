@@ -26,7 +26,7 @@ Github Stats:
   <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=lmcrean&layout=compact&langs_count=8&card_width=320&theme=dark" />
 </a>
 
-<img height=400 src="https://wakatime.com/share/@416fbf43-2a75-4cf7-8b85-019470ba1cc8/5bae8e18-3387-4ac8-866b-c961d8a64055.svg">
+<img height=400 src="https://wakatime.com/share/@416fbf43-2a75-4cf7-8b85-019470ba1cc8/46572cfc-720b-4f33-a9ac-b255e2c537bc.svg">
 
 
 </div>
