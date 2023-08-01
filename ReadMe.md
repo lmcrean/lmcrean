@@ -17,4 +17,16 @@ Want to learn:
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
+Github Stats:
+
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=lmcrean&theme=dark" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=lmcrean&layout=compact&langs_count=8&card_width=320&theme=dark" />
+</a>
+
+<img height=400 src="https://wakatime.com/share/@416fbf43-2a75-4cf7-8b85-019470ba1cc8/5bae8e18-3387-4ac8-866b-c961d8a64055.svg">
+
+
 </div>
