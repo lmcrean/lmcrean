@@ -20,9 +20,7 @@
 
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) ![Devtools](https://img.shields.io/badge/Devtools-3d89fc?style=for-the-badge&logo=google%20chrome&logoColor=white) 
 
-🎓Education:
-
-<img src="ci logo.svg" width="370" height="100">
+🎓Education:<br><img src="ci logo.svg" width="370" height="100">
 
 ***
 
