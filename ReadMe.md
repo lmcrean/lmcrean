@@ -1,6 +1,11 @@
-<div align="center"><b>
+<div align="center">
+  
+![wre](https://github.com/lmcrean/lmcrean/assets/133490867/8fe5ebc2-63e0-4503-87c7-e8203f8ada00)
+
+<b>
 
 <h3>My stack:</h3>
+
 
 ***
 
