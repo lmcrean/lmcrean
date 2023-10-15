@@ -1,6 +1,7 @@
 <div align="center">
-  
-![ewr](https://github.com/lmcrean/lmcrean/assets/133490867/7a406c97-0b7c-47f7-9c57-60c5b0ca7dfe)
+
+![sd](https://github.com/lmcrean/lmcrean/assets/133490867/161161b3-203f-4d95-bd3b-f923d9e7ffc7)
+
 
 <b>
 
