@@ -1,6 +1,7 @@
 <div align="center">
 
-![sd](https://github.com/lmcrean/lmcrean/assets/133490867/161161b3-203f-4d95-bd3b-f923d9e7ffc7)
+![ghf](https://github.com/lmcrean/lmcrean/assets/133490867/cff52838-4388-454a-ba8d-a8a24676e7b0)
+
 
 
 <b>
@@ -42,6 +43,13 @@
 <img height=400 src="https://wakatime.com/share/@416fbf43-2a75-4cf7-8b85-019470ba1cc8/46572cfc-720b-4f33-a9ac-b255e2c537bc.svg">
 
 ***
+
+🪲 StackOverflow stats:
+
+<a href="https://stackoverflow.com/users/21992930/laurie-crean"><img src="https://stackoverflow.com/users/flair/21992930.png?theme=dark" width="208" height="58" alt="profile for Laurie Crean at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for Laurie Crean at Stack Overflow, Q&amp;A for professional and enthusiast programmers"></a>
+
+***
+
 👇check out my projects below 👇
 
 </div>
