@@ -21,7 +21,7 @@
 
 🎨UX Design favorites:
 
-![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) ![Canva](https://img.shields.io/badge/canva-%2300C4CC.svg?style=for-the-badge&logo=canva&logoColor=white)
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) ![Canva](https://img.shields.io/badge/canva-%2300C4CC.svg?style=for-the-badge&logo=canva&logoColor=white) [![CodePen](https://img.shields.io/badge/codepen-%2320232a.svg?style=for-the-badge&logo=codepen&logoColor=white)](https://i.giphy.com/RFEXB5i7ouWxOLB6AX.webp)
 
 🖥️Software workflow:
 
