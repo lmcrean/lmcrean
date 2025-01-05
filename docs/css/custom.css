@@ -1,0 +1,140 @@
+/* Dark theme styles for Docsify */
+:root {
+    --background-color: #091439;
+    --sidebar-background-color: #010b2e;
+    --text-color: #fcfafa;
+    --border-color: #2c095a;
+    --table-header-bg: #091439;
+    --table-row-bg: #091439;
+    --table-row-alt-bg: #091439;
+    --sidebar-highlight-color: #b0c0ff;
+  }
+
+  img {
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .anchor span {
+    color: var(--text-color);
+  }
+
+  .sidebar, body.close .sidebar-toggle, input[type='search'], button.sidebar-toggle {
+    background-color: inherit !important;
+  }
+
+  input[type='search'] {
+    filter: brightness(1.2);
+  }
+
+  .sidebar ul li a {
+    color: var(--text-color);
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  .markdown-section {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  .markdown-section table {
+    border-collapse: collapse;
+    margin: 1em 0;
+    width: 100%;
+  }
+  
+  .markdown-section table th,
+  .markdown-section table td {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+  }
+  
+  .markdown-section table th {
+    background-color: var(--table-header-bg);
+    font-weight: bold;
+  }
+  
+  .markdown-section table tr {
+    background-color: var(--table-row-bg);
+  }
+  
+  .markdown-section table tr:nth-child(even) {
+    background-color: var(--table-row-alt-bg);
+  }
+  
+  /* Adjust code block styling */
+  .markdown-section pre {
+    background-color: #2c2c2c;
+  }
+  
+  .markdown-section code {
+    color: #e0e0e0;
+  }
+
+  .medium-zoom-overlay {
+  background-color: black !important;
+  opacity: 0.9 !important;
+  transition: all 0.3s !important;
+}
+
+.markdown-section pre > code, strong {
+  color: #d1d1d1 !important;
+}
+
+/* Remove default styling for all list items */
+.sidebar-nav li::before {
+  content: none;
+}
+
+/* Style for top-level items */
+.sidebar-nav > ul > li {
+  position: relative;
+}
+
+.sidebar-nav > ul > li:not(:has(> .sidebar-button))::before {
+  content: '▶';
+  position: absolute;
+  left: -7px;
+  top: 0px;
+  font-size: 10px;
+  transition: transform 0.2s;
+}
+
+/* Rotate arrow when item is open */
+li.active ::before {
+  transform: rotate(90deg);
+}
+
+.sidebar-nav > ul {
+  padding-left: 20px;
+}
+
+/* Hide sub-items when collapsed */
+.sidebar-nav > ul > li.collapse > ul {
+  display: none;
+}
+
+/* Remove arrows from all sub-items */
+.sidebar-nav ul ul li::before {
+  content: none;
+}
+
+
+
+.sidebar ul li.active > a {
+  color: var(--sidebar-highlight-color);
+  background-color: var(--background-color);
+  border-width: thick;
+}
+
+.sidebar ul li > a {
+  padding-left: 10px;
+  font-weight: 600;
+  margin-left: 5px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
