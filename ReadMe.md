@@ -2,6 +2,6 @@
 
 Check out my website for a comprehensive guide to my github projects
 
-![image](https://github.com/user-attachments/assets/63e4be37-d358-460a-b8dd-7d420a605eee)
+![image](https://github.com/user-attachments/assets/cca0ac66-efd6-4b53-80e5-f42d384c5121)
 
 </center>
