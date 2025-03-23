@@ -2,6 +2,6 @@
 
 Check out my website for a comprehensive guide to my github projects
 
-![website](http://lauriecrean.dev/docs/screenshots/laurie-crean-v2.png)
+![image](https://github.com/user-attachments/assets/39005bff-ebc8-4b6d-ad90-810d12821652)
 
 </center>
