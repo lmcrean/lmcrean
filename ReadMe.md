@@ -8,7 +8,6 @@
     </td>
     <td style="width: 70%; vertical-align: top;">
       <h1><a href="http://lauriecrean.dev">http://lauriecrean.dev</a></h1>
-      <p>Check out my website for a comprehensive guide to my GitHub projects</p>
     </td>
   </tr>
 </table>
