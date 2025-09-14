@@ -8,6 +8,7 @@
     </td>
     <td style="width: 70%; vertical-align: top;">
       <h1><a href="http://lauriecrean.dev">http://lauriecrean.dev</a></h1>
+      <p>Live Activity feed for Software Solutions</p>
     </td>
   </tr>
 </table>
