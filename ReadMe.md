@@ -8,7 +8,7 @@
     </td>
     <td style="width: 70%; vertical-align: top;">
       <h1><a href="http://lauriecrean.dev">LaurieCrean.dev</a></h1>
-      <p>check out what I've been up to recently</p>
+      <p>Recent Activity Feed</p>
     </td>
   </tr>
 </table>
