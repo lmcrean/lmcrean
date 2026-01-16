@@ -24,7 +24,7 @@ jobs:
 
       - name: Update contributions
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.API_GITHUB_TOKEN }}
         run: python scripts/update_contributions.py
 
       - name: Check for changes
