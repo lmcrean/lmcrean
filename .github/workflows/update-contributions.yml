@@ -30,7 +30,7 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet ReadMe.md; then
+          if git diff --quiet test_readme.md 2>/dev/null || [ ! -f test_readme.md ]; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -41,6 +41,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add ReadMe.md
-          git commit -m "docs: update contribution dates [automated]"
+          git add test_readme.md
+          git commit -m "docs: update test_readme contribution dates [automated]"
           git push

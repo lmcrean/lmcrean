@@ -369,8 +369,8 @@ def generate_readme_section(org_prs: Dict[str, List[dict]]) -> str:
 
 
 def update_readme():
-    """Update the README.md file with fresh contribution data."""
-    readme_path = os.path.join(os.path.dirname(__file__), "..", "ReadMe.md")
+    """Update the test_readme.md file with fresh contribution data."""
+    readme_path = os.path.join(os.path.dirname(__file__), "..", "test_readme.md")
 
     print("Fetching contribution data from GitHub...")
     org_prs = fetch_all_contributions()
@@ -381,7 +381,7 @@ def update_readme():
     with open(readme_path, "w") as f:
         f.write(new_content)
 
-    print(f"ReadMe.md updated successfully!")
+    print(f"test_readme.md updated successfully!")
 
 
 if __name__ == "__main__":
