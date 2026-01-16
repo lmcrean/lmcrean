@@ -13,33 +13,31 @@
   </tr>
 </table>
 
-# Approved in Production
+# Open Source Contributions
+These are my open-source contributions that have been approved in production.
 
-## rropen terraform-provider-c
-**Go**
-1. HTTP timeout to prevent Terraform hanging [(+11/-8)]()
-2. Flush loop and trigger handling improvement in cscdm [(+483/-19)]()
+## Rolls-Royce terraform-provider-c, Go
+1. HTTP timeout to prevent Terraform hanging
+2. Flush loop and trigger handling improvement in cscdm
 
-## GoCardless woocommerce-gateway
-**PHP**
-1. Inconsistent subscriptions fix after cancellation [(+81/-0)]()
+## GoCardless woocommerce-gateway, PHP
+- Inconsistent subscriptions fix after cancellation
 
-## Google Guava
-**Java**
-1. Resource leak fix in FileBackedOutputStream [(+96/-1)]()
-2. Error messages improvement for synthetic TypeVariables [(+19/-5)]()
-3. mergeSorted() stability fix [(+167/-10)]()
-4. mergeSorted() instability test coverage [(+134/-0)]()
-5. putIfAbsent test for null values [(+14/-0)]()
+## Google Guava, Java
+1. Resource leak fix in FileBackedOutputStream
+2. Error messages improvement for synthetic TypeVariables
+3. mergeSorted() stability fix 
+4. mergeSorted() instability test coverage
+5. putIfAbsent test for null values
 
-## Stripe pg-schema-diff
-**Go**
-1. GENERATED ALWAYS AS columns support [(+275/-37)]()
+## Stripe pg-schema-diff, Go
+- GENERATED ALWAYS AS columns support
 
-## Microsoft TypeAgent
-**TypeScript**
-1. Return undefined for partial matches [(+10/-10)]()
+## Microsoft TypeAgent, TypeScript 
+- Return undefined for partial matches
 
-## Penpot
-**Clojure, SQL**
-1. Milestone lock feature to prevent deletion [(+292/-17)]()
+## Penpot, Clojure and SQL
+- Milestone lock feature to prevent deletion
+
+# Developer Projects
+These are my favourite Personal Projects 👇🏼
