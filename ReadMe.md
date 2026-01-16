@@ -13,7 +13,7 @@
   </tr>
 </table>
 
-# Github Contributions
+# Open Source Contributions
 Now running in production across millions of business applications.
 
 ## <img src="https://github.com/rropen.png" width="24" alt="Rolls-Royce"> Rolls-Royce, terraform-provider-cscdm, Go
