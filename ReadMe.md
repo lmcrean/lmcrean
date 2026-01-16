@@ -18,7 +18,7 @@ Now running in production across millions of business applications.
 
 ## <img src="https://github.com/rropen.png" width="24" alt="Rolls-Royce"> Rolls-Royce, terraform-provider-cscdm, Go
 
-1. **[HTTP timeout to prevent Terraform hanging](https://github.com/rropen/terraform-provider-cscdm/pull/16)**<br>*Added 30-second HTTP request timeout to prevent the Terraform provider from hanging indefinitely when the CSC Domain Manager API accepts connections but doesn't respond.*
+1. **[Fix: Add HTTP timeout to prevent Terraform from hanging indefinitely](https://github.com/rropen/terraform-provider-cscdm/pull/16)**<br>*Added 30-second HTTP request timeout to prevent the Terraform provider from hanging indefinitely when the CSC Domain Manager API accepts connections but doesn't respond.*
    <details><summary><code>+11/-8</code></summary>
 
    ```diff
@@ -62,7 +62,7 @@ Now running in production across millions of business applications.
    ```
    </details>
 
-2. **[Flush loop and trigger handling improvement](https://github.com/rropen/terraform-provider-cscdm/pull/9)**<br>*Replaced `sync.Cond` with buffered channels to fix goroutine leaks, added `sync.Once` to prevent panics, and enabled recovery from transient failures instead of permanent termination.*
+2. **[Enhance(error handling): improve flush loop and trigger handling in cscdm](https://github.com/rropen/terraform-provider-cscdm/pull/9)**<br>*Replaced `sync.Cond` with buffered channels to fix goroutine leaks, added `sync.Once` to prevent panics, and enabled recovery from transient failures instead of permanent termination.*
    <details><summary><code>+483/-19</code></summary>
 
    ```diff
@@ -153,7 +153,7 @@ Now running in production across millions of business applications.
 
 ## <img src="https://github.com/gocardless.png" width="24" alt="GoCardless"> GoCardless, woocommerce-gateway, PHP
 
-- **[Inconsistent subscriptions fix after cancellation](https://github.com/gocardless/woocommerce-gateway-gocardless/pull/88)**<br>*Fixed subscription status incorrectly showing "Pending Cancellation" instead of "Cancelled" when users cancel before GoCardless payment confirmation. Added centralized cancellation handling with parent order status synchronization.*
+- **[Fix inconsistent subscription status after cancellation with centralized cancellation logic](https://github.com/gocardless/woocommerce-gateway-gocardless/pull/88)**<br>*Fixed subscription status incorrectly showing "Pending Cancellation" instead of "Cancelled" when users cancel before GoCardless payment confirmation. Added centralized cancellation handling with parent order status synchronization.*
    <details><summary><code>+81/-0</code></summary>
 
    ```diff
@@ -261,7 +261,7 @@ Now running in production across millions of business applications.
 
 ## <img src="https://github.com/google.png" width="24" alt="Google"> Google, Guava, Java
 
-1. **[Resource leak fix in FileBackedOutputStream](https://github.com/google/guava/pull/7986)**<br>*Fixed file handle exhaustion by adding proper exception handling to ensure FileOutputStream is closed when IOException occurs during memory-to-file transition.*
+1. **[Fix resource leak in FileBackedOutputStream to prevent file handle exhaustion](https://github.com/google/guava/pull/7986)**<br>*Fixed file handle exhaustion by adding proper exception handling to ensure FileOutputStream is closed when IOException occurs during memory-to-file transition.*
    <details><summary><code>+96/-1</code></summary>
 
    ```diff
@@ -391,7 +391,7 @@ Now running in production across millions of business applications.
    ```
    </details>
 
-2. **[Error messages improvement for synthetic TypeVariables](https://github.com/google/guava/pull/7974)**<br>*Replaced unhelpful `UnsupportedOperationException("methodName")` with descriptive error messages explaining why annotations aren't supported on synthetic TypeVariables created by TypeResolver.*
+2. **[Improve error messages for annotation methods on synthetic TypeVariables](https://github.com/google/guava/pull/7974)**<br>*Replaced unhelpful `UnsupportedOperationException("methodName")` with descriptive error messages explaining why annotations aren't supported on synthetic TypeVariables created by TypeResolver.*
    <details><summary><code>+19/-5</code></summary>
 
    ```diff
@@ -444,7 +444,7 @@ Now running in production across millions of business applications.
    ```
    </details>
 
-3. **[mergeSorted() stability fix](https://github.com/google/guava/pull/7989)**<br>*Fixed unstable ordering of equal elements by tracking iterator insertion order and using it as a tiebreaker, ensuring elements from earlier iterators appear before equal elements from later ones.*
+3. **[Fix `Iterators.mergeSorted()` to preserve stability for equal elements](https://github.com/google/guava/pull/7989)**<br>*Fixed unstable ordering of equal elements by tracking iterator insertion order and using it as a tiebreaker, ensuring elements from earlier iterators appear before equal elements from later ones.*
    <details><summary><code>+167/-10</code></summary>
 
    ```diff
@@ -658,7 +658,7 @@ Now running in production across millions of business applications.
    ```
    </details>
 
-4. **[mergeSorted() instability test coverage](https://github.com/google/guava/pull/7988)**<br>*Added test cases demonstrating the instability problem in `Iterators.mergeSorted()` as requested by maintainers, verifying the bug exists before the fix PR.*
+4. **[Add tests demonstrating `Iterators.mergeSorted()` instability](https://github.com/google/guava/pull/7988)**<br>*Added test cases demonstrating the instability problem in `Iterators.mergeSorted()` as requested by maintainers, verifying the bug exists before the fix PR.*
    <details><summary><code>+134/-0</code></summary>
 
    ```diff
@@ -809,7 +809,7 @@ Now running in production across millions of business applications.
    ```
    </details>
 
-5. **[putIfAbsent test for null values](https://github.com/google/guava/pull/7987)**<br>*Added test to verify `putIfAbsent` correctly replaces existing null values, catching non-compliant Map implementations that pass the test suite despite violating the JavaDoc specification.*
+5. **[Add test for putIfAbsent to catch implementations that incorrectly ignore null values](https://github.com/google/guava/pull/7987)**<br>*Added test to verify `putIfAbsent` correctly replaces existing null values, catching non-compliant Map implementations that pass the test suite despite violating the JavaDoc specification.*
    <details><summary><code>+14/-0</code></summary>
 
    ```diff
@@ -841,7 +841,7 @@ Now running in production across millions of business applications.
 
 ## <img src="https://github.com/stripe.png" width="24" alt="Stripe"> Stripe, pg-schema-diff, Go
 
-- **[GENERATED ALWAYS AS columns support](https://github.com/stripe/pg-schema-diff/pull/232)**<br>*Fixed migration failures where generated columns were incorrectly treated as DEFAULT columns. Updated schema introspection to detect `pg_attribute.attgenerated`, extended the Column model, and fixed DDL generation to output proper `GENERATED ALWAYS AS ... STORED` syntax.*
+- **[Fix: Support `GENERATED ALWAYS AS` columns to reduce migration failures](https://github.com/stripe/pg-schema-diff/pull/232)**<br>*Fixed migration failures where generated columns were incorrectly treated as DEFAULT columns. Updated schema introspection to detect `pg_attribute.attgenerated`, extended the Column model, and fixed DDL generation to output proper `GENERATED ALWAYS AS ... STORED` syntax.*
    <details><summary><code>+275/-37</code></summary>
 
    ```diff
@@ -988,7 +988,7 @@ Now running in production across millions of business applications.
 
 ## <img src="https://github.com/microsoft.png" width="24" alt="Microsoft"> Microsoft, TypeAgent, TypeScript
 
-- **[Return undefined for partial matches](https://github.com/microsoft/TypeAgent/pull/1478)**<br>*Prevented exceptions when typing partial cached commands by returning `undefined` instead of invalid "unknown.unknown" action names, enabling graceful handling of partial matches.*
+- **[Return undefined instead of invalid action names for partial matches](https://github.com/microsoft/TypeAgent/pull/1478)**<br>*Prevented exceptions when typing partial cached commands by returning `undefined` instead of invalid "unknown.unknown" action names, enabling graceful handling of partial matches.*
    <details><summary><code>+10/-10</code></summary>
 
    ```diff
@@ -1055,7 +1055,7 @@ Now running in production across millions of business applications.
 
 <img src="screenshots/penpot.png" width="200" alt="Penpot milestone lock feature">
 
-- **[Milestone lock feature to prevent deletion](https://github.com/penpot/penpot/pull/6982)**<br>*Implemented version locking system allowing users to protect saved milestones from accidental deletion or bad actors. Added database migration, RPC endpoints with authorization, and UI with visual lock indicators.*
+- **[✨ Enhance (version control): Add milestone lock feature to prevent accidental deletion and bad actor interventions](https://github.com/penpot/penpot/pull/6982)**<br>*Implemented version locking system allowing users to protect saved milestones from accidental deletion or bad actors. Added database migration, RPC endpoints with authorization, and UI with visual lock indicators.*
    <details><summary><code>+292/-17</code></summary>
 
    ```diff
