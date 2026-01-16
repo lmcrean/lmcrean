@@ -30,10 +30,13 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet test_readme.md 2>/dev/null || [ ! -f test_readme.md ]; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
+          # Use git status --porcelain to detect both:
+          # - New untracked files (?? test_readme.md)
+          # - Modified tracked files (M test_readme.md)
+          if git status --porcelain test_readme.md | grep -q .; then
             echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Commit and push changes
