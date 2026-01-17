@@ -6,7 +6,7 @@ Now running in production across millions of business applications.
 ## <img src="https://github.com/google.png" width="24" alt="Google"> Google
 
 **Guava, Java** <br>
-*Google's core Java libraries used across millions of applications.*
+*Core Java libraries used by Google and Android.*
 
 1. **[Fix resource leak in FileBackedOutputStream to prevent file handle exhaustion](https://github.com/google/guava/pull/7986)**<br>*Fixed file handle exhaustion by adding proper exception handling to ensure FileOutputStream is closed when IOException occurs during memory-to-file transition.*
    <details><summary><code>+96/-1</code></summary>
