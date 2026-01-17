@@ -1,5 +1,5 @@
 # Say Hi: [lmcrean@gmail.com](mailto:lmcrean@gmail.com)
-Software developer and Teacher of Computer Science based in London.
+Software developer and Teacher of Computer Science.
 
 # Open Source Contributions
 Now running in production across millions of business applications.
