@@ -3,255 +3,6 @@
 # Open Source Contributions
 Now running in production across millions of business applications.
 
-## <img src="https://github.com/rropen.png" width="24" alt="Rolls-Royce"> Rolls-Royce
-
-**terraform-provider-cscdm, Go**
-*Terraform provider for managing CSC domain registrations and DNS.*
-
-1. **[Fix: Add HTTP timeout to prevent Terraform from hanging indefinitely](https://github.com/rropen/terraform-provider-cscdm/pull/16)**<br>*Added 30-second HTTP request timeout to prevent the Terraform provider from hanging indefinitely when the CSC Domain Manager API accepts connections but doesn't respond.*
-   <details><summary><code>+11/-8</code></summary>
-
-   ```diff
-   diff --git a/internal/cscdm/cscdm.go b/internal/cscdm/cscdm.go
-   index 812162f..58885d7 100644
-   --- a/internal/cscdm/cscdm.go
-   +++ b/internal/cscdm/cscdm.go
-   @@ -15,6 +15,7 @@ const (
-    	CSC_DOMAIN_MANAGER_API_URL = "https://apis.cscglobal.com/dbs/api/v2/"
-    	POLL_INTERVAL              = 5 * time.Second
-    	FLUSH_IDLE_DURATION        = 5 * time.Second
-   +	HTTP_REQUEST_TIMEOUT       = 30 * time.Second
-    )
-
-    type Client struct {
-   @@ -36,14 +37,16 @@ type Client struct {
-    }
-
-    func (c *Client) Configure(apiKey string, apiToken string) {
-   -	c.http = &http.Client{Transport: &util.HttpTransport{
-   -		BaseUrl: CSC_DOMAIN_MANAGER_API_URL,
-   -		Headers: map[string]string{
-   -			"accept":        "application/json",
-   -			"apikey":        apiKey,
-   -			"Authorization": fmt.Sprintf("Bearer %s", apiToken),
-   -		},
-   -	}}
-   +	c.http = &http.Client{
-   +		Timeout: HTTP_REQUEST_TIMEOUT,
-   +		Transport: &util.HttpTransport{
-   +			BaseUrl: CSC_DOMAIN_MANAGER_API_URL,
-   +			Headers: map[string]string{
-   +				"accept":        "application/json",
-   +				"apikey":        apiKey,
-   +				"Authorization": fmt.Sprintf("Bearer %s", apiToken),
-   +			},
-   +		}}
-
-    	c.returnChannels = make(map[string]chan *ZoneRecord)
-    	c.errorChannels = make(map[string]chan error)
-   ```
-   </details>
-
-2. **[Enhance(error handling): improve flush loop and trigger handling in cscdm](https://github.com/rropen/terraform-provider-cscdm/pull/9)**<br>*Replaced `sync.Cond` with buffered channels to fix goroutine leaks, added `sync.Once` to prevent panics, and enabled recovery from transient failures instead of permanent termination.*
-   <details><summary><code>+483/-19</code></summary>
-
-   ```diff
-   diff --git a/internal/cscdm/cscdm.go b/internal/cscdm/cscdm.go
-   index 4b28cc4..812162f 100644
-   --- a/internal/cscdm/cscdm.go
-   +++ b/internal/cscdm/cscdm.go
-   @@ -26,8 +26,9 @@ type Client struct {
-    	batchMutex          sync.Mutex
-    	returnChannelsMutex sync.Mutex
-
-   -	flushTrigger      *sync.Cond
-   +	flushTrigger      chan struct{}
-    	flushLoopStopChan chan struct{}
-   +	stopOnce          sync.Once
-
-    	zoneCache  map[string]*Zone
-    	zoneGroup  singleflight.Group
-   @@ -47,7 +48,7 @@ func (c *Client) Configure(apiKey string, apiToken string) {
-    	c.returnChannels = make(map[string]chan *ZoneRecord)
-    	c.errorChannels = make(map[string]chan error)
-
-   -	c.flushTrigger = sync.NewCond(&sync.Mutex{})
-   +	c.flushTrigger = make(chan struct{}, 1)
-    	c.flushLoopStopChan = make(chan struct{})
-
-    	c.zoneCache = make(map[string]*Zone)
-   @@ -57,28 +58,24 @@ func (c *Client) Configure(apiKey string, apiToken string) {
-
-    func (c *Client) flushLoop() {
-    	for {
-   -		triggerChan := make(chan struct{})
-   -		go func() {
-   -			c.flushTrigger.L.Lock()
-   -			c.flushTrigger.Wait()
-   -			c.flushTrigger.L.Unlock()
-   -			close(triggerChan)
-   -		}()
-   -
-    		flushTimer := time.NewTimer(FLUSH_IDLE_DURATION)
-
-    		select {
-   -		case <-triggerChan:
-   +		case <-c.flushTrigger:
-    			// Flush triggered; reset flush timer
-    			flushTimer.Stop()
-   -			continue
-   +			// Drain the channel in case of multiple signals
-   +			select {
-   +			case <-c.flushTrigger:
-   +			default:
-   +			}
-    		case <-flushTimer.C:
-    			// Timer expired; flush queue
-    			err := c.flush()
-
-    			if err != nil {
-   -				fmt.Fprintf(os.Stderr, "failed to flush queue: %s", err.Error())
-   -				return
-   +				fmt.Fprintf(os.Stderr, "failed to flush queue: %s\n", err.Error())
-   +				// Continue - don't return/terminate
-    			}
-    		case <-c.flushLoopStopChan:
-    			// Stop flush loop
-   @@ -89,12 +86,15 @@ func (c *Client) flushLoop() {
-    }
-
-    func (c *Client) triggerFlush() {
-   -	c.flushTrigger.L.Lock()
-   -	defer c.flushTrigger.L.Unlock()
-   -
-   -	c.flushTrigger.Signal()
-   +	// Non-blocking send - if channel full, trigger already pending
-   +	select {
-   +	case c.flushTrigger <- struct{}{}:
-   +	default:
-   +	}
-    }
-
-    func (c *Client) Stop() {
-   -	close(c.flushLoopStopChan)
-   +	c.stopOnce.Do(func() {
-   +		close(c.flushLoopStopChan)
-   +	})
-    }
-   ```
-   </details>
-
-## <img src="https://github.com/gocardless.png" width="24" alt="GoCardless"> GoCardless
-
-**woocommerce-gateway, PHP**
-*Payment gateway plugin connecting WooCommerce stores to GoCardless Direct Debit.*
-
-- **[Fix inconsistent subscription status after cancellation with centralized cancellation logic](https://github.com/gocardless/woocommerce-gateway-gocardless/pull/88)**<br>*Fixed subscription status incorrectly showing "Pending Cancellation" instead of "Cancelled" when users cancel before GoCardless payment confirmation. Added centralized cancellation handling with parent order status synchronization.*
-   <details><summary><code>+81/-0</code></summary>
-
-   ```diff
-   diff --git a/includes/class-wc-gocardless-gateway-addons.php b/includes/class-wc-gocardless-gateway-addons.php
-   index e490cb7..4c93110 100644
-   --- a/includes/class-wc-gocardless-gateway-addons.php
-   +++ b/includes/class-wc-gocardless-gateway-addons.php
-   @@ -33,6 +33,9 @@ public function __construct() {
-    			// Cancel in-progress payment on subscription cancellation.
-    			add_action( 'woocommerce_subscription_pending-cancel_' . $this->id, array( $this, 'maybe_cancel_subscription_payment' ) );
-    			add_action( 'woocommerce_subscription_cancelled_' . $this->id, array( $this, 'maybe_cancel_subscription_payment' ) );
-   +
-   +			// Status synchronization for parent orders.
-   +			add_action( 'woocommerce_subscription_status_updated', array( $this, 'sync_parent_order_status' ), 10, 3 );
-    		}
-
-    		if ( class_exists( 'WC_Pre_Orders_Order' ) ) {
-   @@ -40,6 +43,84 @@ public function __construct() {
-    		}
-    	}
-
-   +	/**
-   +	 * Synchronize parent order status when all subscriptions are cancelled.
-   +	 * Also intercepts pending-cancel transitions for subscriptions with unconfirmed payments,
-   +	 * checking the most recent order (parent or renewal) to determine if payment is confirmed.
-   +	 *
-   +	 * @since x.x.x
-   +	 * @param WC_Subscription $subscription The subscription object.
-   +	 * @param string          $new_status   The new subscription status.
-   +	 * @param string          $old_status   The old subscription status.
-   +	 */
-   +	public function sync_parent_order_status( $subscription, $new_status, $old_status ) {
-   +		// Only process GoCardless subscriptions and subscription cancellation triggered by the customer.
-   +		if ( $this->id !== $subscription->get_payment_method() || ! isset( $_GET['change_subscription_to'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-   +			return;
-   +		}
-   +
-   +		// Only process Some status -> 'pending-cancel' transition.
-   +		if ( 'pending-cancel' !== $new_status || 'pending-cancel' === $old_status ) {
-   +			return;
-   +		}
-   +
-   +		/*
-   +		 * Handle transition to pending-cancel status for unconfirmed payments.
-   +		 * This checks the most recent order's payment status (parent or latest renewal) from the
-   +		 * GoCardless API to avoid edge cases with webhook delays.
-   +		 */
-   +
-   +		// Get the most recent order of the subscription.
-   +		$last_order = is_callable( array( $subscription, 'get_last_order' ) )
-   +			? $subscription->get_last_order( 'all' )
-   +			: $subscription->get_parent();
-   +
-   +		// If the last order is not a valid order, return.
-   +		if ( ! $last_order || ! is_a( $last_order, 'WC_Abstract_Order' ) ) {
-   +			return;
-   +		}
-   +
-   +		// Get payment status from GoCardless.
-   +		$payment_id     = $this->get_order_resource( $last_order->get_id(), 'payment', 'id' );
-   +		$payment_status = '';
-   +
-   +		if ( $payment_id ) {
-   +			$payment = WC_GoCardless_API::get_payment( $payment_id );
-   +
-   +			if ( is_wp_error( $payment ) || empty( $payment['payments'] ) ) {
-   +				wc_gocardless()->log(
-   +					sprintf(
-   +						'%s - Failed to retrieve payment for order #%s',
-   +						__METHOD__,
-   +						$last_order->get_id()
-   +					)
-   +				);
-   +			} else {
-   +				$payment_status = $payment['payments']['status'] ?? '';
-   +			}
-   +		}
-   +
-   +		// Payment confirmed statuses that indicate payment has gone through.
-   +		$confirmed_statuses = array( 'confirmed', 'paid_out' );
-   +
-   +		// If payment is not confirmed, cancel immediately.
-   +		if ( ! in_array( $payment_status, $confirmed_statuses, true ) ) {
-   +			wc_gocardless()->log(
-   +				sprintf(
-   +					'%s - Cancelling subscription #%s immediately (order #%s has unconfirmed payment status: %s)',
-   +					__METHOD__,
-   +					$subscription->get_id(),
-   +					$last_order->get_id(),
-   +					$payment_status ? $payment_status : 'none'
-   +				)
-   +			);
-   +			$subscription->update_status(
-   +				'cancelled',
-   +				__( 'Subscription cancelled immediately as payment not confirmed for the last order.', 'woocommerce-gateway-gocardless' )
-   +			);
-   +		}
-   +	}
-   +
-    	/**
-    	 * Update GoCardless resource in order meta.
-    	 *
-   ```
-   </details>
-
 ## <img src="https://github.com/google.png" width="24" alt="Google"> Google
 
 **Guava, Java**
@@ -835,6 +586,144 @@ Now running in production across millions of business applications.
    ```
    </details>
 
+## <img src="https://github.com/rropen.png" width="24" alt="Rolls-Royce"> Rolls-Royce
+
+**terraform-provider-cscdm, Go**
+*Terraform provider for managing CSC domain registrations and DNS.*
+
+1. **[Fix: Add HTTP timeout to prevent Terraform from hanging indefinitely](https://github.com/rropen/terraform-provider-cscdm/pull/16)**<br>*Added 30-second HTTP request timeout to prevent the Terraform provider from hanging indefinitely when the CSC Domain Manager API accepts connections but doesn't respond.*
+   <details><summary><code>+11/-8</code></summary>
+
+   ```diff
+   diff --git a/internal/cscdm/cscdm.go b/internal/cscdm/cscdm.go
+   index 812162f..58885d7 100644
+   --- a/internal/cscdm/cscdm.go
+   +++ b/internal/cscdm/cscdm.go
+   @@ -15,6 +15,7 @@ const (
+    	CSC_DOMAIN_MANAGER_API_URL = "https://apis.cscglobal.com/dbs/api/v2/"
+    	POLL_INTERVAL              = 5 * time.Second
+    	FLUSH_IDLE_DURATION        = 5 * time.Second
+   +	HTTP_REQUEST_TIMEOUT       = 30 * time.Second
+    )
+
+    type Client struct {
+   @@ -36,14 +37,16 @@ type Client struct {
+    }
+
+    func (c *Client) Configure(apiKey string, apiToken string) {
+   -	c.http = &http.Client{Transport: &util.HttpTransport{
+   -		BaseUrl: CSC_DOMAIN_MANAGER_API_URL,
+   -		Headers: map[string]string{
+   -			"accept":        "application/json",
+   -			"apikey":        apiKey,
+   -			"Authorization": fmt.Sprintf("Bearer %s", apiToken),
+   -		},
+   -	}}
+   +	c.http = &http.Client{
+   +		Timeout: HTTP_REQUEST_TIMEOUT,
+   +		Transport: &util.HttpTransport{
+   +			BaseUrl: CSC_DOMAIN_MANAGER_API_URL,
+   +			Headers: map[string]string{
+   +				"accept":        "application/json",
+   +				"apikey":        apiKey,
+   +				"Authorization": fmt.Sprintf("Bearer %s", apiToken),
+   +			},
+   +		}}
+
+    	c.returnChannels = make(map[string]chan *ZoneRecord)
+    	c.errorChannels = make(map[string]chan error)
+   ```
+   </details>
+
+2. **[Enhance(error handling): improve flush loop and trigger handling in cscdm](https://github.com/rropen/terraform-provider-cscdm/pull/9)**<br>*Replaced `sync.Cond` with buffered channels to fix goroutine leaks, added `sync.Once` to prevent panics, and enabled recovery from transient failures instead of permanent termination.*
+   <details><summary><code>+483/-19</code></summary>
+
+   ```diff
+   diff --git a/internal/cscdm/cscdm.go b/internal/cscdm/cscdm.go
+   index 4b28cc4..812162f 100644
+   --- a/internal/cscdm/cscdm.go
+   +++ b/internal/cscdm/cscdm.go
+   @@ -26,8 +26,9 @@ type Client struct {
+    	batchMutex          sync.Mutex
+    	returnChannelsMutex sync.Mutex
+
+   -	flushTrigger      *sync.Cond
+   +	flushTrigger      chan struct{}
+    	flushLoopStopChan chan struct{}
+   +	stopOnce          sync.Once
+
+    	zoneCache  map[string]*Zone
+    	zoneGroup  singleflight.Group
+   @@ -47,7 +48,7 @@ func (c *Client) Configure(apiKey string, apiToken string) {
+    	c.returnChannels = make(map[string]chan *ZoneRecord)
+    	c.errorChannels = make(map[string]chan error)
+
+   -	c.flushTrigger = sync.NewCond(&sync.Mutex{})
+   +	c.flushTrigger = make(chan struct{}, 1)
+    	c.flushLoopStopChan = make(chan struct{})
+
+    	c.zoneCache = make(map[string]*Zone)
+   @@ -57,28 +58,24 @@ func (c *Client) Configure(apiKey string, apiToken string) {
+
+    func (c *Client) flushLoop() {
+    	for {
+   -		triggerChan := make(chan struct{})
+   -		go func() {
+   -			c.flushTrigger.L.Lock()
+   -			c.flushTrigger.Wait()
+   -			c.flushTrigger.L.Unlock()
+   -			close(triggerChan)
+   -		}()
+   -
+    		flushTimer := time.NewTimer(FLUSH_IDLE_DURATION)
+
+    		select {
+   -		case <-triggerChan:
+   +		case <-c.flushTrigger:
+    			// Flush triggered; reset flush timer
+    			flushTimer.Stop()
+   -			continue
+   +			// Drain the channel in case of multiple signals
+   +			select {
+   +			case <-c.flushTrigger:
+   +			default:
+   +			}
+    		case <-flushTimer.C:
+    			// Timer expired; flush queue
+    			err := c.flush()
+
+    			if err != nil {
+   -				fmt.Fprintf(os.Stderr, "failed to flush queue: %s", err.Error())
+   -				return
+   +				fmt.Fprintf(os.Stderr, "failed to flush queue: %s\n", err.Error())
+   +				// Continue - don't return/terminate
+    			}
+    		case <-c.flushLoopStopChan:
+    			// Stop flush loop
+   @@ -89,12 +86,15 @@ func (c *Client) flushLoop() {
+    }
+
+    func (c *Client) triggerFlush() {
+   -	c.flushTrigger.L.Lock()
+   -	defer c.flushTrigger.L.Unlock()
+   -
+   -	c.flushTrigger.Signal()
+   +	// Non-blocking send - if channel full, trigger already pending
+   +	select {
+   +	case c.flushTrigger <- struct{}{}:
+   +	default:
+   +	}
+    }
+
+    func (c *Client) Stop() {
+   -	close(c.flushLoopStopChan)
+   +	c.stopOnce.Do(func() {
+   +		close(c.flushLoopStopChan)
+   +	})
+    }
+   ```
+   </details>
+
 ## <img src="https://github.com/stripe.png" width="24" alt="Stripe"> Stripe
 
 **stripe-go, Go**
@@ -1097,6 +986,117 @@ Now running in production across millions of business applications.
    -	if len(column.Default) > 0 {
    -		sb.WriteString(fmt.Sprintf(" DEFAULT %s", column.Default))
    -	}
+   ```
+   </details>
+
+## <img src="https://github.com/gocardless.png" width="24" alt="GoCardless"> GoCardless
+
+**woocommerce-gateway, PHP**
+*Payment gateway plugin connecting WooCommerce stores to GoCardless Direct Debit.*
+
+- **[Fix inconsistent subscription status after cancellation with centralized cancellation logic](https://github.com/gocardless/woocommerce-gateway-gocardless/pull/88)**<br>*Fixed subscription status incorrectly showing "Pending Cancellation" instead of "Cancelled" when users cancel before GoCardless payment confirmation. Added centralized cancellation handling with parent order status synchronization.*
+   <details><summary><code>+81/-0</code></summary>
+
+   ```diff
+   diff --git a/includes/class-wc-gocardless-gateway-addons.php b/includes/class-wc-gocardless-gateway-addons.php
+   index e490cb7..4c93110 100644
+   --- a/includes/class-wc-gocardless-gateway-addons.php
+   +++ b/includes/class-wc-gocardless-gateway-addons.php
+   @@ -33,6 +33,9 @@ public function __construct() {
+    			// Cancel in-progress payment on subscription cancellation.
+    			add_action( 'woocommerce_subscription_pending-cancel_' . $this->id, array( $this, 'maybe_cancel_subscription_payment' ) );
+    			add_action( 'woocommerce_subscription_cancelled_' . $this->id, array( $this, 'maybe_cancel_subscription_payment' ) );
+   +
+   +			// Status synchronization for parent orders.
+   +			add_action( 'woocommerce_subscription_status_updated', array( $this, 'sync_parent_order_status' ), 10, 3 );
+    		}
+
+    		if ( class_exists( 'WC_Pre_Orders_Order' ) ) {
+   @@ -40,6 +43,84 @@ public function __construct() {
+    		}
+    	}
+
+   +	/**
+   +	 * Synchronize parent order status when all subscriptions are cancelled.
+   +	 * Also intercepts pending-cancel transitions for subscriptions with unconfirmed payments,
+   +	 * checking the most recent order (parent or renewal) to determine if payment is confirmed.
+   +	 *
+   +	 * @since x.x.x
+   +	 * @param WC_Subscription $subscription The subscription object.
+   +	 * @param string          $new_status   The new subscription status.
+   +	 * @param string          $old_status   The old subscription status.
+   +	 */
+   +	public function sync_parent_order_status( $subscription, $new_status, $old_status ) {
+   +		// Only process GoCardless subscriptions and subscription cancellation triggered by the customer.
+   +		if ( $this->id !== $subscription->get_payment_method() || ! isset( $_GET['change_subscription_to'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+   +			return;
+   +		}
+   +
+   +		// Only process Some status -> 'pending-cancel' transition.
+   +		if ( 'pending-cancel' !== $new_status || 'pending-cancel' === $old_status ) {
+   +			return;
+   +		}
+   +
+   +		/*
+   +		 * Handle transition to pending-cancel status for unconfirmed payments.
+   +		 * This checks the most recent order's payment status (parent or latest renewal) from the
+   +		 * GoCardless API to avoid edge cases with webhook delays.
+   +		 */
+   +
+   +		// Get the most recent order of the subscription.
+   +		$last_order = is_callable( array( $subscription, 'get_last_order' ) )
+   +			? $subscription->get_last_order( 'all' )
+   +			: $subscription->get_parent();
+   +
+   +		// If the last order is not a valid order, return.
+   +		if ( ! $last_order || ! is_a( $last_order, 'WC_Abstract_Order' ) ) {
+   +			return;
+   +		}
+   +
+   +		// Get payment status from GoCardless.
+   +		$payment_id     = $this->get_order_resource( $last_order->get_id(), 'payment', 'id' );
+   +		$payment_status = '';
+   +
+   +		if ( $payment_id ) {
+   +			$payment = WC_GoCardless_API::get_payment( $payment_id );
+   +
+   +			if ( is_wp_error( $payment ) || empty( $payment['payments'] ) ) {
+   +				wc_gocardless()->log(
+   +					sprintf(
+   +						'%s - Failed to retrieve payment for order #%s',
+   +						__METHOD__,
+   +						$last_order->get_id()
+   +					)
+   +				);
+   +			} else {
+   +				$payment_status = $payment['payments']['status'] ?? '';
+   +			}
+   +		}
+   +
+   +		// Payment confirmed statuses that indicate payment has gone through.
+   +		$confirmed_statuses = array( 'confirmed', 'paid_out' );
+   +
+   +		// If payment is not confirmed, cancel immediately.
+   +		if ( ! in_array( $payment_status, $confirmed_statuses, true ) ) {
+   +			wc_gocardless()->log(
+   +				sprintf(
+   +					'%s - Cancelling subscription #%s immediately (order #%s has unconfirmed payment status: %s)',
+   +					__METHOD__,
+   +					$subscription->get_id(),
+   +					$last_order->get_id(),
+   +					$payment_status ? $payment_status : 'none'
+   +				)
+   +			);
+   +			$subscription->update_status(
+   +				'cancelled',
+   +				__( 'Subscription cancelled immediately as payment not confirmed for the last order.', 'woocommerce-gateway-gocardless' )
+   +			);
+   +		}
+   +	}
+   +
+    	/**
+    	 * Update GoCardless resource in order meta.
+    	 *
    ```
    </details>
 
