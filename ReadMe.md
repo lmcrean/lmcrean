@@ -3,7 +3,9 @@
 # Open Source Contributions
 Now running in production across millions of business applications.
 
-## <img src="https://github.com/rropen.png" width="24" alt="Rolls-Royce"> Rolls-Royce, terraform-provider-cscdm, Go
+## <img src="https://github.com/rropen.png" width="24" alt="Rolls-Royce"> Rolls-Royce
+
+**terraform-provider-cscdm, Go**
 
 1. **[Fix: Add HTTP timeout to prevent Terraform from hanging indefinitely](https://github.com/rropen/terraform-provider-cscdm/pull/16)**<br>*Added 30-second HTTP request timeout to prevent the Terraform provider from hanging indefinitely when the CSC Domain Manager API accepts connections but doesn't respond.*
    <details><summary><code>+11/-8</code></summary>
@@ -138,7 +140,9 @@ Now running in production across millions of business applications.
    ```
    </details>
 
-## <img src="https://github.com/gocardless.png" width="24" alt="GoCardless"> GoCardless, woocommerce-gateway, PHP
+## <img src="https://github.com/gocardless.png" width="24" alt="GoCardless"> GoCardless
+
+**woocommerce-gateway, PHP**
 
 - **[Fix inconsistent subscription status after cancellation with centralized cancellation logic](https://github.com/gocardless/woocommerce-gateway-gocardless/pull/88)**<br>*Fixed subscription status incorrectly showing "Pending Cancellation" instead of "Cancelled" when users cancel before GoCardless payment confirmation. Added centralized cancellation handling with parent order status synchronization.*
    <details><summary><code>+81/-0</code></summary>
@@ -246,7 +250,9 @@ Now running in production across millions of business applications.
    ```
    </details>
 
-## <img src="https://github.com/google.png" width="24" alt="Google"> Google, Guava, Java
+## <img src="https://github.com/google.png" width="24" alt="Google"> Google
+
+**Guava, Java**
 
 1. **[Fix resource leak in FileBackedOutputStream to prevent file handle exhaustion](https://github.com/google/guava/pull/7986)**<br>*Fixed file handle exhaustion by adding proper exception handling to ensure FileOutputStream is closed when IOException occurs during memory-to-file transition.*
    <details><summary><code>+96/-1</code></summary>
@@ -826,7 +832,9 @@ Now running in production across millions of business applications.
    ```
    </details>
 
-## <img src="https://github.com/stripe.png" width="24" alt="Stripe"> Stripe, stripe-go, Go
+## <img src="https://github.com/stripe.png" width="24" alt="Stripe"> Stripe
+
+**stripe-go, Go**
 
 - **[Add context-aware logging interface and update logger usage](https://github.com/stripe/stripe-go/pull/2178)**<br>*Adds `ContextLeveledLoggerInterface` to enable distributed tracing integration. Backend checks interface type on each log call and passes context when supported. Fully backward compatible with existing `LeveledLoggerInterface` implementations. Fixes #1281.*
    <details><summary><code>+536/-19</code></summary>
@@ -940,7 +948,7 @@ Now running in production across millions of business applications.
    ```
    </details>
 
-## <img src="https://github.com/stripe.png" width="24" alt="Stripe"> Stripe, pg-schema-diff, Go
+**pg-schema-diff, Go**
 
 - **[Fix: Support `GENERATED ALWAYS AS` columns to reduce migration failures](https://github.com/stripe/pg-schema-diff/pull/232)**<br>*Fixed migration failures where generated columns were incorrectly treated as DEFAULT columns. Updated schema introspection to detect `pg_attribute.attgenerated`, extended the Column model, and fixed DDL generation to output proper `GENERATED ALWAYS AS ... STORED` syntax.*
    <details><summary><code>+275/-37</code></summary>
@@ -1087,7 +1095,9 @@ Now running in production across millions of business applications.
    ```
    </details>
 
-## <img src="https://github.com/microsoft.png" width="24" alt="Microsoft"> Microsoft, TypeAgent, TypeScript
+## <img src="https://github.com/microsoft.png" width="24" alt="Microsoft"> Microsoft
+
+**TypeAgent, TypeScript**
 
 - **[Return undefined instead of invalid action names for partial matches](https://github.com/microsoft/TypeAgent/pull/1478)**<br>*Prevented exceptions when typing partial cached commands by returning `undefined` instead of invalid "unknown.unknown" action names, enabling graceful handling of partial matches.*
    <details><summary><code>+10/-10</code></summary>
@@ -1152,7 +1162,9 @@ Now running in production across millions of business applications.
    ```
    </details>
 
-## <img src="https://github.com/penpot.png" width="24" alt="Penpot"> Penpot, Clojure and SQL
+## <img src="https://github.com/penpot.png" width="24" alt="Penpot"> Penpot
+
+**penpot, Clojure and SQL**
 
 <img src="screenshots/penpot.png" width="200" alt="Penpot milestone lock feature">
 
