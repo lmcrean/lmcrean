@@ -1,4 +1,5 @@
 # Say Hi: [lmcrean@gmail.com](mailto:lmcrean@gmail.com)
+Software developer building in public since 2023. Teacher of Computer Science based in London.
 
 # Open Source Contributions
 Now running in production across millions of business applications.
