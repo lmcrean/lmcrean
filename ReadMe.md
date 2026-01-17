@@ -826,6 +826,120 @@ Now running in production across millions of business applications.
    ```
    </details>
 
+## <img src="https://github.com/stripe.png" width="24" alt="Stripe"> Stripe, stripe-go, Go
+
+- **[Add context-aware logging interface and update logger usage](https://github.com/stripe/stripe-go/pull/2178)**<br>*Adds `ContextLeveledLoggerInterface` to enable distributed tracing integration. Backend checks interface type on each log call and passes context when supported. Fully backward compatible with existing `LeveledLoggerInterface` implementations. Fixes #1281.*
+   <details><summary><code>+536/-19</code></summary>
+
+   ```diff
+   diff --git a/log.go b/log.go
+   index b52d7ac56b..6f529a5db5 100644
+   --- a/log.go
+   +++ b/log.go
+   @@ -1,6 +1,7 @@
+    package stripe
+
+    import (
+   +	"context"
+    	"fmt"
+    	"io"
+    	"os"
+   @@ -140,3 +141,24 @@ type LeveledLoggerInterface interface {
+    	// Warnf logs a warning message using Printf conventions.
+    	Warnf(format string, v ...interface{})
+    }
+   +
+   +// ContextLeveledLoggerInterface provides a context-aware leveled logging interface
+   +// for printing debug, informational, warning, and error messages with access to
+   +// the request's context.Context.
+   +//
+   +// This interface allows loggers to extract trace IDs, request IDs, and other
+   +// contextual information for distributed tracing systems like OpenTelemetry,
+   +// OpenCensus, or custom correlation tracking.
+   +type ContextLeveledLoggerInterface interface {
+   +	// Debugf logs a debug message using Printf conventions with context.
+   +	Debugf(ctx context.Context, format string, v ...interface{})
+   +
+   +	// Errorf logs an error message using Printf conventions with context.
+   +	Errorf(ctx context.Context, format string, v ...interface{})
+   +
+   +	// Infof logs an informational message using Printf conventions with context.
+   +	Infof(ctx context.Context, format string, v ...interface{})
+   +
+   +	// Warnf logs a warning message using Printf conventions with context.
+   +	Warnf(ctx context.Context, format string, v ...interface{})
+   +}
+   diff --git a/stripe.go b/stripe.go
+   index f1a0111fb2..ee3334231f 100644
+   --- a/stripe.go
+   +++ b/stripe.go
+   @@ -228,6 +228,11 @@ type BackendConfig struct {
+    	// LeveledLogger is the logger that the backend will use to log errors,
+    	// warnings, and informational messages.
+    	//
+   +	// This field accepts either LeveledLoggerInterface (the traditional interface)
+   +	// or ContextLeveledLoggerInterface (the context-aware interface). The SDK will
+   +	// automatically detect which interface your logger implements and use it
+   +	// appropriately.
+   +	//
+    	// LeveledLoggerInterface is implemented by LeveledLogger, and one can be
+    	// initialized at the desired level of logging.  LeveledLoggerInterface
+    	// also provides out-of-the-box compatibility with a Logrus Logger, but may
+   @@ -239,7 +244,7 @@ type BackendConfig struct {
+    	// To set a logger that logs nothing, set this to a stripe.LeveledLogger
+    	// with a Level of LevelNull (simply setting this field to nil will not
+    	// work).
+   -	LeveledLogger LeveledLoggerInterface
+   +	LeveledLogger interface{}
+
+    	// MaxNetworkRetries sets maximum number of times that the library will
+    	// retry requests that appear to have failed due to an intermittent
+   @@ -653,6 +662,42 @@ func (s *BackendImplementation) maybeEnqueueTelemetryMetrics(requestID string, r
+    	}
+    }
+
+   +// logDebugf logs a debug message, using context-aware logger if available
+   +func (s *BackendImplementation) logDebugf(ctx context.Context, format string, v ...interface{}) {
+   +	if logger, ok := s.LeveledLogger.(ContextLeveledLoggerInterface); ok {
+   +		logger.Debugf(ctx, format, v...)
+   +	} else if logger, ok := s.LeveledLogger.(LeveledLoggerInterface); ok {
+   +		logger.Debugf(format, v...)
+   +	}
+   +}
+   +
+   +// logInfof logs an info message, using context-aware logger if available
+   +func (s *BackendImplementation) logInfof(ctx context.Context, format string, v ...interface{}) {
+   +	if logger, ok := s.LeveledLogger.(ContextLeveledLoggerInterface); ok {
+   +		logger.Infof(ctx, format, v...)
+   +	} else if logger, ok := s.LeveledLogger.(LeveledLoggerInterface); ok {
+   +		logger.Infof(format, v...)
+   +	}
+   +}
+   +
+   +// logWarnf logs a warning message, using context-aware logger if available
+   +func (s *BackendImplementation) logWarnf(ctx context.Context, format string, v ...interface{}) {
+   +	if logger, ok := s.LeveledLogger.(ContextLeveledLoggerInterface); ok {
+   +		logger.Warnf(ctx, format, v...)
+   +	} else if logger, ok := s.LeveledLogger.(LeveledLoggerInterface); ok {
+   +		logger.Warnf(format, v...)
+   +	}
+   +}
+   +
+   +// logErrorf logs an error message, using context-aware logger if available
+   +func (s *BackendImplementation) logErrorf(ctx context.Context, format string, v ...interface{}) {
+   +	if logger, ok := s.LeveledLogger.(ContextLeveledLoggerInterface); ok {
+   +		logger.Errorf(ctx, format, v...)
+   +	} else if logger, ok := s.LeveledLogger.(LeveledLoggerInterface); ok {
+   +		logger.Errorf(format, v...)
+   +	}
+   +}
+   +
+    func resetBodyReader(body *bytes.Buffer, req *http.Request) {
+    	// This might look a little strange, but we set the request's body
+    	// outside of `NewRequest` so that we can get a fresh version every
+   ```
+   </details>
+
 ## <img src="https://github.com/stripe.png" width="24" alt="Stripe"> Stripe, pg-schema-diff, Go
 
 - **[Fix: Support `GENERATED ALWAYS AS` columns to reduce migration failures](https://github.com/stripe/pg-schema-diff/pull/232)**<br>*Fixed migration failures where generated columns were incorrectly treated as DEFAULT columns. Updated schema introspection to detect `pg_attribute.attgenerated`, extended the Column model, and fixed DDL generation to output proper `GENERATED ALWAYS AS ... STORED` syntax.*
