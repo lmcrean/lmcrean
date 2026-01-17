@@ -5,7 +5,7 @@ Now running in production across millions of business applications.
 
 ## <img src="https://github.com/google.png" width="24" alt="Google"> Google
 
-**Guava, Java**
+**Guava, Java** <br>
 *Google's core Java libraries used across millions of applications.*
 
 1. **[Fix resource leak in FileBackedOutputStream to prevent file handle exhaustion](https://github.com/google/guava/pull/7986)**<br>*Fixed file handle exhaustion by adding proper exception handling to ensure FileOutputStream is closed when IOException occurs during memory-to-file transition.*
@@ -588,7 +588,7 @@ Now running in production across millions of business applications.
 
 ## <img src="https://github.com/rropen.png" width="24" alt="Rolls-Royce"> Rolls-Royce
 
-**terraform-provider-cscdm, Go**
+**terraform-provider-cscdm, Go** <br>
 *Terraform provider for managing CSC domain registrations and DNS.*
 
 1. **[Fix: Add HTTP timeout to prevent Terraform from hanging indefinitely](https://github.com/rropen/terraform-provider-cscdm/pull/16)**<br>*Added 30-second HTTP request timeout to prevent the Terraform provider from hanging indefinitely when the CSC Domain Manager API accepts connections but doesn't respond.*
@@ -726,7 +726,7 @@ Now running in production across millions of business applications.
 
 ## <img src="https://github.com/stripe.png" width="24" alt="Stripe"> Stripe
 
-**stripe-go, Go**
+**stripe-go, Go** <br>
 *Official Go client library for the Stripe payments API.*
 
 - **[Add context-aware logging interface and update logger usage](https://github.com/stripe/stripe-go/pull/2178)**<br>*Adds `ContextLeveledLoggerInterface` to enable distributed tracing integration. Backend checks interface type on each log call and passes context when supported. Fully backward compatible with existing `LeveledLoggerInterface` implementations. Fixes #1281.*
@@ -841,7 +841,7 @@ Now running in production across millions of business applications.
    ```
    </details>
 
-**pg-schema-diff, Go**
+**pg-schema-diff, Go** <br>
 *Tool for generating safe PostgreSQL schema migrations by diffing schemas.*
 
 - **[Fix: Support `GENERATED ALWAYS AS` columns to reduce migration failures](https://github.com/stripe/pg-schema-diff/pull/232)**<br>*Fixed migration failures where generated columns were incorrectly treated as DEFAULT columns. Updated schema introspection to detect `pg_attribute.attgenerated`, extended the Column model, and fixed DDL generation to output proper `GENERATED ALWAYS AS ... STORED` syntax.*
@@ -991,7 +991,7 @@ Now running in production across millions of business applications.
 
 ## <img src="https://github.com/gocardless.png" width="24" alt="GoCardless"> GoCardless
 
-**woocommerce-gateway, PHP**
+**woocommerce-gateway, PHP** <br>
 *Payment gateway plugin connecting WooCommerce stores to GoCardless Direct Debit.*
 
 - **[Fix inconsistent subscription status after cancellation with centralized cancellation logic](https://github.com/gocardless/woocommerce-gateway-gocardless/pull/88)**<br>*Fixed subscription status incorrectly showing "Pending Cancellation" instead of "Cancelled" when users cancel before GoCardless payment confirmation. Added centralized cancellation handling with parent order status synchronization.*
@@ -1102,7 +1102,7 @@ Now running in production across millions of business applications.
 
 ## <img src="https://github.com/microsoft.png" width="24" alt="Microsoft"> Microsoft
 
-**TypeAgent, TypeScript**
+**TypeAgent, TypeScript** <br>
 *Microsoft's AI agent framework for natural language task automation.*
 
 - **[Return undefined instead of invalid action names for partial matches](https://github.com/microsoft/TypeAgent/pull/1478)**<br>*Prevented exceptions when typing partial cached commands by returning `undefined` instead of invalid "unknown.unknown" action names, enabling graceful handling of partial matches.*
@@ -1170,7 +1170,7 @@ Now running in production across millions of business applications.
 
 ## <img src="https://github.com/penpot.png" width="24" alt="Penpot"> Penpot
 
-**penpot, Clojure and SQL**
+**penpot, Clojure and SQL** <br>
 *Open-source design and prototyping platform (alternative to Figma).*
 
 <img src="screenshots/penpot.png" width="200" alt="Penpot milestone lock feature">
