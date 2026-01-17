@@ -8,7 +8,7 @@ Now running in production across millions of business applications.
 **Guava, Java** <br>
 *Core Java libraries used by Google and Android.*
 
-1. **[Fix resource leak in FileBackedOutputStream to prevent file handle exhaustion](https://github.com/google/guava/pull/7986)**<br>*Fixed file handle exhaustion by adding proper exception handling to ensure FileOutputStream is closed when IOException occurs during memory-to-file transition.*
+1. **<a href="https://github.com/google/guava/pull/7986" target="_blank">Fix resource leak in FileBackedOutputStream to prevent file handle exhaustion</a>**<br>*Fixed file handle exhaustion by adding proper exception handling to ensure FileOutputStream is closed when IOException occurs during memory-to-file transition.*
    <details><summary><code>+96/-1</code></summary>
 
    ```diff
@@ -136,9 +136,11 @@ Now running in production across millions of business applications.
             throw e;
           }
    ```
+
+   <a href="https://github.com/google/guava/pull/7986/files" target="_blank">view full diff</a>
    </details>
 
-2. **[Improve error messages for annotation methods on synthetic TypeVariables](https://github.com/google/guava/pull/7974)**<br>*Replaced unhelpful `UnsupportedOperationException("methodName")` with descriptive error messages explaining why annotations aren't supported on synthetic TypeVariables created by TypeResolver.*
+2. **<a href="https://github.com/google/guava/pull/7974" target="_blank">Improve error messages for annotation methods on synthetic TypeVariables</a>**<br>*Replaced unhelpful `UnsupportedOperationException("methodName")` with descriptive error messages explaining why annotations aren't supported on synthetic TypeVariables created by TypeResolver.*
    <details><summary><code>+19/-5</code></summary>
 
    ```diff
@@ -189,9 +191,11 @@ Now running in production across millions of business applications.
             try {
               return typeVariableMethod.invoke(typeVariableImpl, args);
    ```
+
+   <a href="https://github.com/google/guava/pull/7974/files" target="_blank">view full diff</a>
    </details>
 
-3. **[Fix `Iterators.mergeSorted()` to preserve stability for equal elements](https://github.com/google/guava/pull/7989)**<br>*Fixed unstable ordering of equal elements by tracking iterator insertion order and using it as a tiebreaker, ensuring elements from earlier iterators appear before equal elements from later ones.*
+3. **<a href="https://github.com/google/guava/pull/7989" target="_blank">Fix `Iterators.mergeSorted()` to preserve stability for equal elements</a>**<br>*Fixed unstable ordering of equal elements by tracking iterator insertion order and using it as a tiebreaker, ensuring elements from earlier iterators appear before equal elements from later ones.*
    <details><summary><code>+167/-10</code></summary>
 
    ```diff
@@ -403,9 +407,11 @@ Now running in production across millions of business applications.
           return next;
         }
    ```
+
+   <a href="https://github.com/google/guava/pull/7989/files" target="_blank">view full diff</a>
    </details>
 
-4. **[Add tests demonstrating `Iterators.mergeSorted()` instability](https://github.com/google/guava/pull/7988)**<br>*Added test cases demonstrating the instability problem in `Iterators.mergeSorted()` as requested by maintainers, verifying the bug exists before the fix PR.*
+4. **<a href="https://github.com/google/guava/pull/7988" target="_blank">Add tests demonstrating `Iterators.mergeSorted()` instability</a>**<br>*Added test cases demonstrating the instability problem in `Iterators.mergeSorted()` as requested by maintainers, verifying the bug exists before the fix PR.*
    <details><summary><code>+134/-0</code></summary>
 
    ```diff
@@ -554,9 +560,11 @@ Now running in production across millions of business applications.
    +  // stability fix is applied.
     }
    ```
+
+   <a href="https://github.com/google/guava/pull/7988/files" target="_blank">view full diff</a>
    </details>
 
-5. **[Add test for putIfAbsent to catch implementations that incorrectly ignore null values](https://github.com/google/guava/pull/7987)**<br>*Added test to verify `putIfAbsent` correctly replaces existing null values, catching non-compliant Map implementations that pass the test suite despite violating the JavaDoc specification.*
+5. **<a href="https://github.com/google/guava/pull/7987" target="_blank">Add test for putIfAbsent to catch implementations that incorrectly ignore null values</a>**<br>*Added test to verify `putIfAbsent` correctly replaces existing null values, catching non-compliant Map implementations that pass the test suite despite violating the JavaDoc specification.*
    <details><summary><code>+14/-0</code></summary>
 
    ```diff
@@ -584,6 +592,8 @@ Now running in production across millions of business applications.
    +  }
     }
    ```
+
+   <a href="https://github.com/google/guava/pull/7987/files" target="_blank">view full diff</a>
    </details>
 
 ## <img src="https://github.com/rropen.png" width="24" alt="Rolls-Royce"> Rolls-Royce
@@ -591,7 +601,7 @@ Now running in production across millions of business applications.
 **terraform-provider-cscdm, Go** <br>
 *Terraform provider for managing CSC domain registrations and DNS.*
 
-1. **[Fix: Add HTTP timeout to prevent Terraform from hanging indefinitely](https://github.com/rropen/terraform-provider-cscdm/pull/16)**<br>*Added 30-second HTTP request timeout to prevent the Terraform provider from hanging indefinitely when the CSC Domain Manager API accepts connections but doesn't respond.*
+1. **<a href="https://github.com/rropen/terraform-provider-cscdm/pull/16" target="_blank">Fix: Add HTTP timeout to prevent Terraform from hanging indefinitely</a>**<br>*Added 30-second HTTP request timeout to prevent the Terraform provider from hanging indefinitely when the CSC Domain Manager API accepts connections but doesn't respond.*
    <details><summary><code>+11/-8</code></summary>
 
    ```diff
@@ -633,9 +643,11 @@ Now running in production across millions of business applications.
     	c.returnChannels = make(map[string]chan *ZoneRecord)
     	c.errorChannels = make(map[string]chan error)
    ```
+
+   <a href="https://github.com/rropen/terraform-provider-cscdm/pull/16/files" target="_blank">view full diff</a>
    </details>
 
-2. **[Enhance(error handling): improve flush loop and trigger handling in cscdm](https://github.com/rropen/terraform-provider-cscdm/pull/9)**<br>*Replaced `sync.Cond` with buffered channels to fix goroutine leaks, added `sync.Once` to prevent panics, and enabled recovery from transient failures instead of permanent termination.*
+2. **<a href="https://github.com/rropen/terraform-provider-cscdm/pull/9" target="_blank">Enhance(error handling): improve flush loop and trigger handling in cscdm</a>**<br>*Replaced `sync.Cond` with buffered channels to fix goroutine leaks, added `sync.Once` to prevent panics, and enabled recovery from transient failures instead of permanent termination.*
    <details><summary><code>+483/-19</code></summary>
 
    ```diff
@@ -722,6 +734,8 @@ Now running in production across millions of business applications.
    +	})
     }
    ```
+
+   <a href="https://github.com/rropen/terraform-provider-cscdm/pull/9/files" target="_blank">view full diff</a>
    </details>
 
 ## <img src="https://github.com/stripe.png" width="24" alt="Stripe"> Stripe
@@ -729,7 +743,7 @@ Now running in production across millions of business applications.
 **stripe-go, Go** <br>
 *Official Go client library for the Stripe payments API.*
 
-- **[Add context-aware logging interface and update logger usage](https://github.com/stripe/stripe-go/pull/2178)**<br>*Adds `ContextLeveledLoggerInterface` to enable distributed tracing integration. Backend checks interface type on each log call and passes context when supported. Fully backward compatible with existing `LeveledLoggerInterface` implementations. Fixes #1281.*
+- **<a href="https://github.com/stripe/stripe-go/pull/2178" target="_blank">Add context-aware logging interface and update logger usage</a>**<br>*Adds `ContextLeveledLoggerInterface` to enable distributed tracing integration. Backend checks interface type on each log call and passes context when supported. Fully backward compatible with existing `LeveledLoggerInterface` implementations. Fixes #1281.*
    <details><summary><code>+536/-19</code></summary>
 
    ```diff
@@ -839,12 +853,14 @@ Now running in production across millions of business applications.
     	// This might look a little strange, but we set the request's body
     	// outside of `NewRequest` so that we can get a fresh version every
    ```
+
+   <a href="https://github.com/stripe/stripe-go/pull/2178/files" target="_blank">view full diff</a>
    </details>
 
 **pg-schema-diff, Go** <br>
 *Tool for generating safe PostgreSQL schema migrations by diffing schemas.*
 
-- **[Fix: Support `GENERATED ALWAYS AS` columns to reduce migration failures](https://github.com/stripe/pg-schema-diff/pull/232)**<br>*Fixed migration failures where generated columns were incorrectly treated as DEFAULT columns. Updated schema introspection to detect `pg_attribute.attgenerated`, extended the Column model, and fixed DDL generation to output proper `GENERATED ALWAYS AS ... STORED` syntax.*
+- **<a href="https://github.com/stripe/pg-schema-diff/pull/232" target="_blank">Fix: Support `GENERATED ALWAYS AS` columns to reduce migration failures</a>**<br>*Fixed migration failures where generated columns were incorrectly treated as DEFAULT columns. Updated schema introspection to detect `pg_attribute.attgenerated`, extended the Column model, and fixed DDL generation to output proper `GENERATED ALWAYS AS ... STORED` syntax.*
    <details><summary><code>+275/-37</code></summary>
 
    ```diff
@@ -987,6 +1003,8 @@ Now running in production across millions of business applications.
    -		sb.WriteString(fmt.Sprintf(" DEFAULT %s", column.Default))
    -	}
    ```
+
+   <a href="https://github.com/stripe/pg-schema-diff/pull/232/files" target="_blank">view full diff</a>
    </details>
 
 ## <img src="https://github.com/gocardless.png" width="24" alt="GoCardless"> GoCardless
@@ -994,7 +1012,7 @@ Now running in production across millions of business applications.
 **woocommerce-gateway, PHP** <br>
 *Payment gateway plugin connecting WooCommerce stores to GoCardless Direct Debit.*
 
-- **[Fix inconsistent subscription status after cancellation with centralized cancellation logic](https://github.com/gocardless/woocommerce-gateway-gocardless/pull/88)**<br>*Fixed subscription status incorrectly showing "Pending Cancellation" instead of "Cancelled" when users cancel before GoCardless payment confirmation. Added centralized cancellation handling with parent order status synchronization.*
+- **<a href="https://github.com/gocardless/woocommerce-gateway-gocardless/pull/88" target="_blank">Fix inconsistent subscription status after cancellation with centralized cancellation logic</a>**<br>*Fixed subscription status incorrectly showing "Pending Cancellation" instead of "Cancelled" when users cancel before GoCardless payment confirmation. Added centralized cancellation handling with parent order status synchronization.*
    <details><summary><code>+81/-0</code></summary>
 
    ```diff
@@ -1098,6 +1116,8 @@ Now running in production across millions of business applications.
     	 * Update GoCardless resource in order meta.
     	 *
    ```
+
+   <a href="https://github.com/gocardless/woocommerce-gateway-gocardless/pull/88/files" target="_blank">view full diff</a>
    </details>
 
 ## <img src="https://github.com/microsoft.png" width="24" alt="Microsoft"> Microsoft
@@ -1105,7 +1125,7 @@ Now running in production across millions of business applications.
 **TypeAgent, TypeScript** <br>
 *Microsoft's AI agent framework for natural language task automation.*
 
-- **[Return undefined instead of invalid action names for partial matches](https://github.com/microsoft/TypeAgent/pull/1478)**<br>*Prevented exceptions when typing partial cached commands by returning `undefined` instead of invalid "unknown.unknown" action names, enabling graceful handling of partial matches.*
+- **<a href="https://github.com/microsoft/TypeAgent/pull/1478" target="_blank">Return undefined instead of invalid action names for partial matches</a>**<br>*Prevented exceptions when typing partial cached commands by returning `undefined` instead of invalid "unknown.unknown" action names, enabling graceful handling of partial matches.*
    <details><summary><code>+10/-10</code></summary>
 
    ```diff
@@ -1166,6 +1186,8 @@ Now running in production across millions of business applications.
             schemaName,
             actionName,
    ```
+
+   <a href="https://github.com/microsoft/TypeAgent/pull/1478/files" target="_blank">view full diff</a>
    </details>
 
 ## <img src="https://github.com/penpot.png" width="24" alt="Penpot"> Penpot
@@ -1175,7 +1197,7 @@ Now running in production across millions of business applications.
 
 <img src="screenshots/penpot.png" width="200" alt="Penpot milestone lock feature">
 
-- **[✨ Enhance (version control): Add milestone lock feature to prevent accidental deletion and bad actor interventions](https://github.com/penpot/penpot/pull/6982)**<br>*Implemented version locking system allowing users to protect saved milestones from accidental deletion or bad actors. Added database migration, RPC endpoints with authorization, and UI with visual lock indicators.*
+- **<a href="https://github.com/penpot/penpot/pull/6982" target="_blank">✨ Enhance (version control): Add milestone lock feature to prevent accidental deletion and bad actor interventions</a>**<br>*Implemented version locking system allowing users to protect saved milestones from accidental deletion or bad actors. Added database migration, RPC endpoints with authorization, and UI with visual lock indicators.*
    <details><summary><code>+292/-17</code></summary>
 
    ```diff
@@ -1321,6 +1343,8 @@ Now running in production across millions of business applications.
    +msgid "errors.only-creator-can-lock"
    +msgstr "Only the version creator can lock it"
    ```
+
+   <a href="https://github.com/penpot/penpot/pull/6982/files" target="_blank">view full diff</a>
    </details>
 
 # Developer Projects
