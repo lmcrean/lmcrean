@@ -1,20 +1,30 @@
 #!/usr/bin/env python3
 """
-Fetch GitHub PR contributions and update the README with relative dates.
-Uses GitHub token from environment variable for authentication.
-Sorts organizations by most recent PR merge date.
+Clone ReadMe.md to test_readme.md and update relative timestamps.
+Finds PR URLs, fetches merge dates, and injects relative timestamps into <summary> tags.
 """
 
 import os
 import re
 import json
 from datetime import datetime, timezone
-from typing import Optional, Dict, List, Any
+from typing import Optional, Dict, Any
 import urllib.request
 import urllib.error
 
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
 GITHUB_API = "https://api.github.com"
+
+# Manual overrides for PR merge dates (keyed by "owner/repo#number")
+PR_MERGE_DATES: Dict[str, str] = {
+    "penpot/penpot#6982": "2025-07-26T12:15:30Z",
+    "gocardless/woocommerce-gateway-gocardless#88": "2025-12-17T00:00:00Z",
+    "google/guava#7988": "2025-09-14T13:00:00Z",
+    "google/guava#7989": "2025-09-14T13:04:00Z",
+    "google/guava#7987": "2025-09-14T11:44:42Z",
+    "google/guava#7974": "2025-09-24T12:00:00Z",
+    "google/guava#7986": "2025-10-30T14:00:00Z",
+    "rropen/terraform-provider-cscdm#16": "2026-01-05T18:25:21Z",
 
 # ============================================================================
 # CONFIGURATION - PR Overrides and Filtering
@@ -117,46 +127,9 @@ PR_OVERRIDES: Dict[int, Dict[str, Any]] = {
     },
 }
 
-# Blocked PR IDs (will be excluded from output)
-BLOCKED_PRS = {2742664883}
+if not GITHUB_TOKEN:
+    print("Warning: No GITHUB_TOKEN found. API rate limits will be restrictive.")
 
-# ============================================================================
-# CONTRIBUTIONS TO TRACK
-# ============================================================================
-
-# Define contributions: (owner, repo, pr_numbers)
-CONTRIBUTIONS = [
-    ("rropen", "terraform-provider-cscdm", [16, 9]),
-    ("gocardless", "woocommerce-gateway-gocardless", [88]),
-    ("google", "guava", [7986, 7974, 7989, 7988, 7987]),
-    ("stripe", "pg-schema-diff", [232]),
-    ("microsoft", "TypeAgent", [1478]),
-    ("penpot", "penpot", [6982]),
-]
-
-# Organization display info
-ORG_INFO = {
-    "rropen": {"name": "Rolls-Royce", "language": "Go"},
-    "gocardless": {"name": "GoCardless", "language": "PHP"},
-    "google": {"name": "Google", "language": "Java"},
-    "stripe": {"name": "Stripe", "language": "Go"},
-    "microsoft": {"name": "Microsoft", "language": "TypeScript"},
-    "penpot": {"name": "Penpot", "language": "Clojure, SQL"},
-}
-
-# Repository display names (when different from org name)
-REPO_DISPLAY = {
-    "terraform-provider-cscdm": "terraform-provider-cscdm",
-    "woocommerce-gateway-gocardless": "woocommerce-gateway",
-    "guava": "Guava",
-    "pg-schema-diff": "pg-schema-diff",
-    "TypeAgent": "TypeAgent",
-    "penpot": "Penpot",
-}
-
-# ============================================================================
-# GITHUB API FUNCTIONS
-# ============================================================================
 
 def github_request(endpoint: str, return_list: bool = False):
     """Make authenticated request to GitHub API."""
@@ -288,112 +261,40 @@ def get_relative_time(date_str: str) -> str:
     return f"{years} years ago"
 
 
-def parse_date(date_str: str) -> Optional[datetime]:
-    """Parse ISO date string to datetime."""
-    if not date_str:
-        return None
-    try:
-        return datetime.fromisoformat(date_str.replace("Z", "+00:00"))
-    except:
-        return None
+def fetch_pr_merge_date(owner: str, repo: str, pr_number: int) -> Optional[str]:
+    """Fetch the merge date for a PR from GitHub API or overrides."""
+    key = f"{owner}/{repo}#{pr_number}"
+
+    # Check overrides first
+    if key in PR_MERGE_DATES:
+        return PR_MERGE_DATES[key]
+
+    # Fetch from API
+    pr_data = github_request(f"/repos/{owner}/{repo}/pulls/{pr_number}")
+    if pr_data:
+        return pr_data.get("merged_at") or pr_data.get("created_at")
+    return None
 
 
-def clean_title(title: str) -> str:
-    """Clean up PR title - remove emoji codes and extra whitespace."""
-    # Remove GitHub emoji codes like :sparkles:
-    title = re.sub(r":[a-z_]+:", "", title)
-    # Remove extra whitespace
-    title = " ".join(title.split())
-    return title.strip()
+def update_readme_with_timestamps():
+    """Read ReadMe.md, inject relative timestamps, write to test_readme.md."""
+    script_dir = os.path.dirname(__file__)
+    readme_path = os.path.join(script_dir, "..", "ReadMe.md")
+    output_path = os.path.join(script_dir, "..", "test_readme.md")
 
+    # Read the source file
+    with open(readme_path, "r", encoding="utf-8") as f:
+        content = f.read()
 
-def format_diff_stats(additions: int, deletions: int, merged_at: str, is_merged: bool) -> str:
-    """Format diff stats with relative date."""
-    if is_merged and merged_at:
-        relative_time = get_relative_time(merged_at)
-        return f"`+{additions}/-{deletions}` | merged {relative_time}"
-    else:
-        return f"`+{additions}/-{deletions}` | open"
+    # Find all PR URLs and their positions
+    pr_pattern = r'https://github\.com/([^/]+)/([^/]+)/pull/(\d+)'
 
+    # Find all summary tags that need timestamps
+    summary_pattern = r'(<details><summary><code>\+\d+/-\d+</code>)(</summary>)'
 
-# ============================================================================
-# README GENERATION
-# ============================================================================
-
-def fetch_all_contributions() -> Dict[str, List[dict]]:
-    """Fetch all PR data and group by organization."""
-    org_prs: Dict[str, List[dict]] = {}
-
-    for owner, repo, pr_numbers in CONTRIBUTIONS:
-        # Check if repo should be hidden
-        if repo in HIDDEN_REPOSITORIES:
-            print(f"Skipping hidden repository: {repo}")
-            continue
-
-        if owner not in org_prs:
-            org_prs[owner] = []
-
-        for pr_num in pr_numbers:
-            pr_data = fetch_pr_data(owner, repo, pr_num)
-            if pr_data:
-                org_prs[owner].append(pr_data)
-                print(f"Fetched: {owner}/{repo}#{pr_num} - {pr_data['title'][:50]}...")
-
-    # Apply LIMITED_REPOSITORIES filtering
-    for repo_name, rule in LIMITED_REPOSITORIES.items():
-        if rule == "keep-latest-only":
-            for owner, prs in org_prs.items():
-                matching = [pr for pr in prs if pr.get("repo") == repo_name]
-                if len(matching) > 1:
-                    # Keep only the most recent
-                    matching.sort(key=lambda x: parse_date(x.get("merged_at") or x.get("created_at") or "") or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
-                    to_remove = matching[1:]
-                    org_prs[owner] = [pr for pr in prs if pr not in to_remove]
-
-    return org_prs
-
-
-def get_org_latest_date(prs: List[dict]) -> datetime:
-    """Get the most recent merge/create date from a list of PRs."""
-    latest = datetime.min.replace(tzinfo=timezone.utc)
-    for pr in prs:
-        date = parse_date(pr.get("merged_at") or pr.get("created_at") or "")
-        if date and date > latest:
-            latest = date
-    return latest
-
-
-def generate_readme_section(org_prs: Dict[str, List[dict]]) -> str:
-    """Generate the Open Source Contributions section for README."""
-    lines = [
-        "# Say Hi: [lmcrean@gmail.com](mailto:lmcrean@gmail.com)",
-        "",
-        "# Open Source Contributions",
-        "Now running in production across millions of business applications.",
-        "",
-    ]
-
-    # Sort organizations by most recent PR date
-    sorted_orgs = sorted(
-        org_prs.items(),
-        key=lambda x: get_org_latest_date(x[1]),
-        reverse=True
-    )
-
-    for owner, prs in sorted_orgs:
-        if not prs:
-            continue
-
-        org = ORG_INFO.get(owner, {"name": owner, "language": ""})
-
-        # Get unique repos for this org
-        repos = list(set(pr["repo"] for pr in prs))
-        repo_name = REPO_DISPLAY.get(repos[0], repos[0]) if len(repos) == 1 else ", ".join(REPO_DISPLAY.get(r, r) for r in repos)
-
-        # Org header with logo
-        lines.append(f"## <img src=\"https://github.com/{owner}.png\" width=\"24\" alt=\"{org['name']}\"> {org['name']}, {repo_name}, {org['language']}")
-        lines.append("")
-
+    # Build a list of (pr_url_match, summary_match) pairs by position
+    pr_matches = list(re.finditer(pr_pattern, content))
+    summary_matches = list(re.finditer(summary_pattern, content))
         # Add screenshot for Penpot (special case)
         if owner == "penpot":
             lines.append('<img src="screenshots/penpot.png" width="200" alt="Penpot milestone lock feature">')
@@ -446,31 +347,42 @@ def generate_readme_section(org_prs: Dict[str, List[dict]]) -> str:
             lines.append("   </details>")
             lines.append("")
 
-    # Add Developer Projects section
-    lines.append("# Developer Projects")
-    lines.append("My favourite Personal Projects")
-    lines.append("")
+    print(f"Found {len(pr_matches)} PR URLs and {len(summary_matches)} summary tags")
 
-    return "\n".join(lines)
+    # For each summary, find the closest preceding PR URL
+    replacements = []
+    for summary_match in summary_matches:
+        summary_pos = summary_match.start()
 
+        # Find the closest PR URL before this summary
+        closest_pr = None
+        for pr_match in pr_matches:
+            if pr_match.end() < summary_pos:
+                closest_pr = pr_match
+            else:
+                break
 
-def update_readme():
-    """Update the test_readme.md file with fresh contribution data."""
-    readme_path = os.path.join(os.path.dirname(__file__), "..", "test_readme.md")
+        if closest_pr:
+            owner, repo, pr_num = closest_pr.groups()
+            merge_date = fetch_pr_merge_date(owner, repo, int(pr_num))
 
-    print("Fetching contribution data from GitHub...")
-    org_prs = fetch_all_contributions()
+            if merge_date:
+                relative_time = get_relative_time(merge_date)
+                # Store the replacement: (start, end, new_text)
+                new_summary = f"{summary_match.group(1)} | merged {relative_time}{summary_match.group(2)}"
+                replacements.append((summary_match.start(), summary_match.end(), new_summary))
+                print(f"  {owner}/{repo}#{pr_num}: merged {relative_time}")
 
-    print("\nGenerating README...")
-    new_content = generate_readme_section(org_prs)
+    # Apply replacements in reverse order to maintain positions
+    for start, end, new_text in reversed(replacements):
+        content = content[:start] + new_text + content[end:]
 
-    with open(readme_path, "w") as f:
-        f.write(new_content)
+    # Write the output file
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(content)
 
-    print(f"test_readme.md updated successfully!")
+    print(f"\ntest_readme.md updated with {len(replacements)} timestamps!")
 
 
 if __name__ == "__main__":
-    if not GITHUB_TOKEN:
-        print("Warning: No GITHUB_TOKEN found. API rate limits will be restrictive.")
-    update_readme()
+    update_readme_with_timestamps()
