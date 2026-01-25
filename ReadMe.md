@@ -1349,4 +1349,7 @@ Now running in production across millions of business applications.
    </details>
 
 # Developer Projects
-My favourite Personal Projects 👇🏼
+
+I am currently developing software that can be used by teachers in any subject. It's currently in beta testing and safety evaluations.
+
+Live Demo Previews coming soon! Meanwhile check out my favourite Personal Projects 👇🏼
