@@ -1348,8 +1348,6 @@ Now running in production across millions of business applications.
    <a href="https://github.com/penpot/penpot/pull/6982/files" target="_blank">view full diff</a>
    </details>
 
-# Developer Projects
+# Commercial Projects
 
-I am currently developing software that can be used by teachers in any subject. It's currently in beta testing and safety evaluations.
-
-Live Demo Previews coming soon! Meanwhile check out my favourite Personal Projects 👇🏼
+Currently in Research and Development, details to follow.
