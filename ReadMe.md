@@ -1,6 +1,26 @@
 # Say Hi: [lmcrean@gmail.com](mailto:lmcrean@gmail.com)
 Software developer and Teacher of Computer Science.
 
+# My Projects
+
+## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/e52005b9-ae86-4fc7-9225-4fd6dbf9657a" /> ExamHost
+<b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API </b><br>
+<i>Ed-Tech solution for graceful PDF handling</i>
+
+[Check out the application here.](https://product-one-477118.web.app/) 
+
+<img width="500" alt="Image" src="https://github.com/user-attachments/assets/097a1540-f4d0-4ba6-b37e-ffb7db134dc5" />
+
+<details>
+   <summary>
+   <b>See More</b>
+   </summary>
+<img width="1792" height="1857" alt="image" src="https://github.com/user-attachments/assets/9b67e0ff-df93-46fd-8b26-3ec5dbfd5376" />
+<img width="3839" height="2159" alt="image" src="https://github.com/user-attachments/assets/281447f5-0271-42ca-9e10-7e458cb1a661" />
+</details>
+
+
+
 # Open Source Contributions
 Now running in production across millions of business applications.
 
@@ -1348,11 +1368,3 @@ Now running in production across millions of business applications.
    <a href="https://github.com/penpot/penpot/pull/6982/files" target="_blank">view full diff</a>
    </details>
 
-# ExamHost
-Currently in Research and development.  
-
-<img width="1830" height="1454" alt="image" src="https://github.com/user-attachments/assets/e705614e-ff46-4f19-97f5-16c28eeb5d27" />
-<img width="1792" height="1857" alt="image" src="https://github.com/user-attachments/assets/9b67e0ff-df93-46fd-8b26-3ec5dbfd5376" />
-<img width="3839" height="2159" alt="image" src="https://github.com/user-attachments/assets/281447f5-0271-42ca-9e10-7e458cb1a661" />
-
-[Check out the mock application here.](https://product-one-477118.web.app/) 
