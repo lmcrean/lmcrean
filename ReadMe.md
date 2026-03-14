@@ -2,6 +2,7 @@
 Software developer and Teacher of Computer Science.
 
 # My Projects
+Solving real pain points for Education users.
 
 ## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/e52005b9-ae86-4fc7-9225-4fd6dbf9657a" /> ExamHost
 <b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API </b><br>
