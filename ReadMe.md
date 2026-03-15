@@ -6,7 +6,7 @@ Now building solutions for thousands of Education users.
 
 ## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/e52005b9-ae86-4fc7-9225-4fd6dbf9657a" /> ExamHost
 <b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript </b><br>
-<i>Graceful PDF handling for Exam Revisions</i>
+<i>Graceful PDF handling for Exam Revision</i>
 
 [Check out the application here.](https://product-one-477118.web.app/) 
 
