@@ -6,19 +6,19 @@ Now building solutions for thousands of Education users.
 
 ## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/e52005b9-ae86-4fc7-9225-4fd6dbf9657a" /> ExamHost
 <b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript </b><br>
-<i>Graceful PDF handling for Exam Revision</i>
+<i>Graceful PDF/JSON handling for Exam Revision</i>
 
-[Check out the application here.](https://product-one-477118.web.app/) 
+[Check out the application here.](https://examhost.live/) 
 
 <img width="500" alt="Image" src="https://github.com/user-attachments/assets/097a1540-f4d0-4ba6-b37e-ffb7db134dc5" />
 
-<details>
+<!-- <details>
    <summary>
    <b>See More</b>
    </summary>
-<img width="1792" height="1857" alt="image" src="https://github.com/user-attachments/assets/9b67e0ff-df93-46fd-8b26-3ec5dbfd5376" />
+<img width="1765" height="1062" alt="image" src="https://github.com/user-attachments/assets/ace29dc4-022b-49cb-828e-ba07290373da" />
 <img width="3839" height="2159" alt="image" src="https://github.com/user-attachments/assets/281447f5-0271-42ca-9e10-7e458cb1a661" />
-</details>
+</details> -->
 
 
 
