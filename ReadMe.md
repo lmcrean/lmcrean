@@ -12,6 +12,8 @@ Now building solutions for thousands of Education users.
 
 <img width="500" alt="Image" src="https://github.com/user-attachments/assets/097a1540-f4d0-4ba6-b37e-ffb7db134dc5" />
 
+<img width="643" height="352" alt="image" src="https://github.com/user-attachments/assets/ee28df51-217d-4792-ba09-d44048c03f4f" />
+
 <!-- <details>
    <summary>
    <b>See More</b>
