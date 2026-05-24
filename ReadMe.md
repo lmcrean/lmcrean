@@ -21,6 +21,20 @@ Software developer and Teacher of Computer Science.
 </details> -->
 
 
+## Tracker sheets
+- personalised tracker with topic distribution, attainment tracking
+- master tracker oversees each student's individual tracker
+
+## Anki deck
+- Exam Questions as an Anki Deck
+
+## Marking pro
+
+- improving quality and speed of exam paper marking through topic distribution, UI readability and usability.
+
+## Compsci games
+
+- increasing engagement through computer science games around crucial concepts and cybersecurity
 
 # Open Source Contributions
 
