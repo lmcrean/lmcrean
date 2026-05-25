@@ -3,6 +3,8 @@ Full-stack Software Developer and Teacher of Computer Science.
 
 # My Projects
 
+Currently available for beta users. Contact me for access.
+
 ## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> ExamHost
 <b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript, JSON </b><br>
 <i>Graceful Exam Revision solution. Student's gain access to 24/7 exam practise and can choose between self-assessment or instant AI feedback.</i>
