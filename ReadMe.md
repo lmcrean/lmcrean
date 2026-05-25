@@ -7,7 +7,7 @@ All projects currently available for beta testing. Contact me for access.
 
 ## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> ExamHost
 <b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript, JSON </b><br>
-- Graceful Exam Revision solution deployed on Firebase. Check out the application here: [https://examhost.live/](https://examhost.live/) 
+- Exam Revision solution deployed on Firebase. Check out the application here: [https://examhost.live/](https://examhost.live/) 
 - Student's gain access to 24/7 exam practise and can choose between self-assessment or instant AI feedback.
 - Dynamic question processing for Python editors, SQL editors, Flowchart, Image annotation leading to closer proxy to real exam papers.
 
