@@ -2,7 +2,6 @@
 Software developer and Teacher of Computer Science.
 
 # My Projects
-Now building solutions for thousands of Education users.
 
 ## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> ExamHost
 <b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript </b><br>
@@ -12,7 +11,6 @@ Now building solutions for thousands of Education users.
 
 <img width="500" alt="Image" src="https://github.com/user-attachments/assets/63c8c96a-9ab4-4345-98a9-ea3b704008df" />
 <br>
-<img width="500" alt="image" src="https://github.com/user-attachments/assets/8478e337-b439-4581-b485-c1cd918ae465" />
 
 <!-- <details>
    <summary>
@@ -25,7 +23,6 @@ Now building solutions for thousands of Education users.
 
 
 # Open Source Contributions
-Now running in production across millions of business applications.
 
 ## <img src="https://github.com/google.png" width="24" alt="Google"> Google
 
