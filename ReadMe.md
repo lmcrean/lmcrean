@@ -3,7 +3,7 @@ Full-stack Software Developer and Teacher of Computer Science.
 
 # My Projects
 
-Currently available for beta testing. Contact me for access.
+All projects currently available for beta testing. Contact me for access.
 
 ## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> ExamHost
 <b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript, JSON </b><br>
@@ -24,7 +24,7 @@ Currently available for beta testing. Contact me for access.
 <img width="3839" height="2159" alt="image" src="https://github.com/user-attachments/assets/281447f5-0271-42ca-9e10-7e458cb1a661" />
 </details> -->
 
-## Marking pro
+## Professional Marking Workflow
 <b>SQLite, Flask, Python, HTML</b><br>
 - Improved quality and speed of exam paper marking through topic distribution, UI readability and usability.
 - Student's have easier to understand exam results with more visual rendering of exam content
