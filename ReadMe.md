@@ -4,8 +4,8 @@ Software developer and Teacher of Computer Science.
 # My Projects
 
 ## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> ExamHost
-<b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript </b><br>
-<i>Graceful PDF/JSON handling for Exam Revision</i>
+<b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript, json </b><br>
+<i>Graceful Exam Revision solution. Student's gain access to 24/7 exam practise and can choose between self-assessment or instant AI feedback.</i>
 
 [Check out the application here.](https://examhost.live/) 
 
@@ -21,18 +21,16 @@ Software developer and Teacher of Computer Science.
 </details> -->
 
 ## Marking pro
+<b>HTML,Flask, Python, SQLite</b><br>
+<i>Improved quality and speed of exam paper marking through topic distribution, UI readability and usability. Student's have easier to understand exam results, Teacher's can easily moderate digital copies across faculty.</i>
 
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/fc963bb3-1e82-4787-b672-e3806fbfb25e" />
 
-- improving quality and speed of exam paper marking through topic distribution, UI readability and usability.
-- lead to clearer feedback process
-
 ## Tracker sheets
+<b>Google Apps Script API, Google Sheets </b><br>
+<i>Multi-spreadsheet assessment ecosytem with topic distribution, attainment tracking for improved student experience. Student's have personal trackers, teacher has master tracker overseeing cohort progress</i>
+
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/1dd882d0-3d03-4bd3-a5c9-06a75745290a" />
-
-- personalised tracker with topic distribution, attainment tracking
-- master tracker oversees each student's individual tracker
-
 
 # Open Source Contributions
 
