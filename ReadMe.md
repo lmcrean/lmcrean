@@ -7,9 +7,11 @@ Currently available for beta testing. Contact me for access.
 
 ## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> ExamHost
 <b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript, JSON </b><br>
-<i>Graceful Exam Revision solution. Student's gain access to 24/7 exam practise and can choose between self-assessment or instant AI feedback.</i>
+- Graceful Exam Revision solution deployed on Firebase. Check out the application here: [https://examhost.live/](https://examhost.live/) 
+- Student's gain access to 24/7 exam practise and can choose between self-assessment or instant AI feedback.
+- Dynamic question processing for Python editors, SQL editors, Flowchart, Image annotation leading to closer proxy to real exam papers.
 
-[Check out the application here.](https://examhost.live/) 
+
 
 <img width="500" alt="Image" src="https://github.com/user-attachments/assets/f238993e-1e5a-4bb9-ae37-e2de255b393b" />
 <br>
@@ -24,13 +26,17 @@ Currently available for beta testing. Contact me for access.
 
 ## Marking pro
 <b>SQLite, Flask, Python, HTML</b><br>
-<i>Improved quality and speed of exam paper marking through topic distribution, UI readability and usability. Student's have easier to understand exam results, Teacher's can easily moderate digital copies across faculty.</i>
+- Improved quality and speed of exam paper marking through topic distribution, UI readability and usability.
+- Student's have easier to understand exam results with more visual rendering of exam content
+- Teacher's can easily send and moderate digital copies across faculty
 
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/fc963bb3-1e82-4787-b672-e3806fbfb25e" />
 
-## Tracker sheets
+## Personalised Assessment Ecosytem
 <b>Google Apps Script API, Google Sheets </b><br>
-<i>Multi-spreadsheet assessment ecosytem with topic distribution, attainment tracking for improved student experience. Student's have personal trackers, teacher has master tracker overseeing cohort progress</i>
+- Multi-spreadsheet assessment ecosytem with topic distribution, attainment tracking for improved student experience.
+- Student's have personal trackers private to them and teacher
+- Teacher has master tracker sheet to oversee cohort progress
 
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/1dd882d0-3d03-4bd3-a5c9-06a75745290a" />
 
