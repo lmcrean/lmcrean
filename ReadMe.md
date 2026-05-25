@@ -4,13 +4,13 @@ Software developer and Teacher of Computer Science.
 # My Projects
 Now building solutions for thousands of Education users.
 
-## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/e52005b9-ae86-4fc7-9225-4fd6dbf9657a" /> ExamHost
+## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> ExamHost
 <b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript </b><br>
 <i>Graceful PDF/JSON handling for Exam Revision</i>
 
 [Check out the application here.](https://examhost.live/) 
 
-<img width="500" alt="Image" src="https://github.com/user-attachments/assets/097a1540-f4d0-4ba6-b37e-ffb7db134dc5" />
+<img width="500" alt="Image" src="https://github.com/user-attachments/assets/63c8c96a-9ab4-4345-98a9-ea3b704008df" />
 
 <img width="643" height="352" alt="image" src="https://github.com/user-attachments/assets/ee28df51-217d-4792-ba09-d44048c03f4f" />
 
