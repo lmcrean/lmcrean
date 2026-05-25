@@ -11,8 +11,8 @@ Now building solutions for thousands of Education users.
 [Check out the application here.](https://examhost.live/) 
 
 <img width="500" alt="Image" src="https://github.com/user-attachments/assets/63c8c96a-9ab4-4345-98a9-ea3b704008df" />
-
-<img width="643" alt="image" src="https://github.com/user-attachments/assets/8478e337-b439-4581-b485-c1cd918ae465" />
+<br>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/8478e337-b439-4581-b485-c1cd918ae465" />
 
 <!-- <details>
    <summary>
