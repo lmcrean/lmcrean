@@ -20,21 +20,19 @@ Software developer and Teacher of Computer Science.
 <img width="3839" height="2159" alt="image" src="https://github.com/user-attachments/assets/281447f5-0271-42ca-9e10-7e458cb1a661" />
 </details> -->
 
+## Marking pro
+
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/fc963bb3-1e82-4787-b672-e3806fbfb25e" />
+
+- improving quality and speed of exam paper marking through topic distribution, UI readability and usability.
+- lead to clearer feedback process
 
 ## Tracker sheets
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/1dd882d0-3d03-4bd3-a5c9-06a75745290a" />
+
 - personalised tracker with topic distribution, attainment tracking
 - master tracker oversees each student's individual tracker
 
-## Anki deck
-- Exam Questions as an Anki Deck
-
-## Marking pro
-
-- improving quality and speed of exam paper marking through topic distribution, UI readability and usability.
-
-## Compsci games
-
-- increasing engagement through computer science games around crucial concepts and cybersecurity
 
 # Open Source Contributions
 
