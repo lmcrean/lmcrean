@@ -1,5 +1,5 @@
 # Say Hi: [lmcrean@gmail.com](mailto:lmcrean@gmail.com)
-Software developer and Teacher of Computer Science.
+Full-stack Software Developer and Teacher of Computer Science.
 
 # My Projects
 
@@ -9,7 +9,7 @@ Software developer and Teacher of Computer Science.
 
 [Check out the application here.](https://examhost.live/) 
 
-<img width="500" alt="Image" src="https://github.com/user-attachments/assets/63c8c96a-9ab4-4345-98a9-ea3b704008df" />
+<img width="500" alt="Image" src="https://github.com/user-attachments/assets/f238993e-1e5a-4bb9-ae37-e2de255b393b" />
 <br>
 
 <!-- <details>
