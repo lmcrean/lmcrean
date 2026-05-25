@@ -9,7 +9,7 @@ All projects currently available for beta testing. Contact me for access.
 <b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript, JSON </b><br>
 - Exam Revision solution deployed on Firebase. Check out the application here: [https://examhost.live/](https://examhost.live/) 
 - Student's gain access to 24/7 exam practise and can choose between self-assessment or instant AI feedback.
-- Dynamic question processing for Python editors, SQL editors, Flowchart, Image annotation leading to closer proxy to real exam papers.
+- Dynamic content processing for Python editors, SQL editors, Flowchart, Image annotation and Flashcards leading to more impactful teaching and learning experience.
 
 
 
