@@ -52,6 +52,19 @@ flowchart LR
 
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/1dd882d0-3d03-4bd3-a5c9-06a75745290a" />
 
+
+```mermaid
+flowchart LR
+    Relay["Apps Script relay<br/>read · write · format · protect"]
+    Relay -->|writes & formats| T1[Student tracker]
+    Relay -->|writes & formats| T2[Student tracker]
+    Relay -->|writes & formats| Tn[... up to 24]
+    T1 -->|IMPORTRANGE| Master[(Master tracker)]
+    T2 -->|IMPORTRANGE| Master
+    Tn -->|IMPORTRANGE| Master
+    Master --> Dash[Cohort dashboard]
+```
+
 # Open Source Contributions
 
 I have worked inside large production codebases at major engineering organisations, across Java, Go, TypeScript, PHP and Clojure. Each contribution meant reading an unfamiliar codebase, locating a real defect or gap, and getting a fix through skeptical maintainer review.
