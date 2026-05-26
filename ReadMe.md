@@ -2,7 +2,7 @@
 
 I design and ship working, multi-service software systems, and I can explain how they work to people who do not speak the jargon. I build fast by directing AI coding agents, bringing engineering judgment to know when the output is right, when an architecture holds together, and when an integration works end to end.
 
-I teach Computer Science to public exam groups, so turning dense technical ideas into something people can act on is the job.
+I currently teach Computer Science to public exam groups, turning dense technical ideas into something people can act on.
 
 Based in London. Reach me at lmcrean@gmail.com or on LinkedIn at [in/lcrean](https://www.linkedin.com/in/lcrean).
 
@@ -18,15 +18,23 @@ All of the following projects are currently available for beta testing. I own th
 
 
 <img width="500" alt="Image" src="https://github.com/user-attachments/assets/f238993e-1e5a-4bb9-ae37-e2de255b393b" />
+
 <br>
 
-<!-- <details>
-   <summary>
-   <b>See More</b>
-   </summary>
-<img width="1765" height="1062" alt="image" src="https://github.com/user-attachments/assets/ace29dc4-022b-49cb-828e-ba07290373da" />
-<img width="3839" height="2159" alt="image" src="https://github.com/user-attachments/assets/281447f5-0271-42ca-9e10-7e458cb1a661" />
-</details> -->
+```mermaid
+flowchart LR
+    Student([Student]) --> Auth[Firebase Auth]
+    Auth --> App[Web app · TypeScript]
+    App --> Editors["Exam Questions with <br>Interactive editors: Python · SQL · Flowchart · Image annotation"]
+    App --> DB[(localStorage)]
+    DB[(localStorage)] --> DB2[(postgreSQL)]
+    Editors --> ASS{user choice}
+    ASS --> LLM["LLM feedback layer<br/>Gemini API"]
+    ASS --> SA["Self-assess · Typescript"]
+    SA --> DB
+    LLM --> DB
+    DB2 --> App
+```
 
 ## Professional Marking Workflow
 <b>SQLite, Flask, Python, HTML</b><br>
