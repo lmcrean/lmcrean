@@ -1,16 +1,20 @@
-# Say Hi: [lmcrean@gmail.com](mailto:lmcrean@gmail.com)
-Full-stack Software Developer and Teacher of Computer Science.
+# Laurie Crean
+
+I design and ship working, multi-service software systems, and I can explain how they work to people who do not speak the jargon. I build fast by directing AI coding agents, bringing engineering judgment to know when the output is right, when an architecture holds together, and when an integration works end to end.
+
+I teach Computer Science to public exam groups, so turning dense technical ideas into something people can act on is the job.
+
+Based in London. Reach me at lmcrean@gmail.com or on LinkedIn at [in/lcrean](https://www.linkedin.com/in/lcrean).
 
 # My Projects
 
-All projects currently available for beta testing. Contact me for access.
+All of the following projects are currently available for beta testing. I own the architecture and the integration between the services. Contact me for access.
 
 ## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> ExamHost
 <b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript, JSON </b><br>
-- Exam Revision solution deployed on Firebase. Check out the application here: [https://examhost.live/](https://examhost.live/) 
-- Student's gain access to 24/7 exam practise and can choose between self-assessment or instant AI feedback.
-- Dynamic content processing for Python editors, SQL editors, Flowchart, Image annotation and Flashcards leading to more impactful teaching and learning experience.
-
+- Used by real students during exam season. The product provides access to 24/7 exam practise, allowing users to choose between self-assessment or instant AI feedback. Leading to more impactful teaching and learning experience.
+- It is a multi-service platform that wires authentication, a database, an LLM feedback layer and interactive Python, SQL and flowchart editors into one product.
+- Live at [examhost.live](https://examhost.live/).
 
 
 <img width="500" alt="Image" src="https://github.com/user-attachments/assets/f238993e-1e5a-4bb9-ae37-e2de255b393b" />
@@ -41,6 +45,8 @@ All projects currently available for beta testing. Contact me for access.
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/1dd882d0-3d03-4bd3-a5c9-06a75745290a" />
 
 # Open Source Contributions
+
+I have worked inside large production codebases at major engineering organisations, across Java, Go, TypeScript, PHP and Clojure. Each contribution meant reading an unfamiliar codebase, locating a real defect or gap, and getting a fix through skeptical maintainer review.
 
 ## <img src="https://github.com/google.png" width="24" alt="Google"> Google
 
