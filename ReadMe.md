@@ -67,7 +67,7 @@ flowchart LR
 
 # Open Source Contributions
 
-I have worked inside large production codebases at major engineering organisations, across Java, Go, TypeScript, PHP and Clojure. Each contribution meant reading an unfamiliar codebase, locating a real defect or gap, and getting a fix through skeptical maintainer review.
+I have worked inside large production codebases at major engineering organisations, across Java, Go, TypeScript, PHP and Clojure. Each contribution meant reading an unfamiliar codebase, locating a real defect or gap, and getting a fix through skeptical maintainer review. The following have all been approved in production (link provided) and now run across millions of business applications.
 
 ## <img src="https://github.com/google.png" width="24" alt="Google"> Google
 
