@@ -36,19 +36,16 @@ flowchart LR
     DB2 --> App
 ```
 
-## Professional Marking Workflow
-<b>SQLite, Flask, Python, HTML</b><br>
+## Professional Marking Workflow with Personalised Assessment Ecosytem
+<b>SQLite, Flask, Python, HTML, Google Apps Script API, Google Sheets </b><br>
 - Improved quality and speed of exam paper marking through topic distribution, UI readability and usability.
 - Student's have easier to understand exam results with more visual rendering of exam content
 - Teacher's can easily send and moderate digital copies across faculty
-
-<img width="500" alt="image" src="https://github.com/user-attachments/assets/fc963bb3-1e82-4787-b672-e3806fbfb25e" />
-
-## Personalised Assessment Ecosytem
-<b>Google Apps Script API, Google Sheets </b><br>
 - Multi-spreadsheet assessment ecosytem with topic distribution, attainment tracking for improved student experience.
 - Student's have personal trackers private to them and teacher
 - Teacher has master tracker sheet to oversee cohort progress
+
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/fc963bb3-1e82-4787-b672-e3806fbfb25e" />
 
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/1dd882d0-3d03-4bd3-a5c9-06a75745290a" />
 
@@ -56,6 +53,8 @@ flowchart LR
 ```mermaid
 flowchart LR
     Relay["Apps Script relay<br/>read · write · format · protect"]
+    SS["Student Submissions from photocopier · PDF"] --> MW
+    MW["Marking Application"] --> Relay
     Relay -->|writes & formats| T1[Student tracker]
     Relay -->|writes & formats| T2[Student tracker]
     Relay -->|writes & formats| Tn[... up to 24]
