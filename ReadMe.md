@@ -10,11 +10,13 @@ Based in London. Reach me at lmcrean@gmail.com or on LinkedIn at [in/lcrean](htt
 
 All of the following projects are currently available for beta testing. I own the architecture and the integration between the services. Contact me for access.
 
-## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> ExamHost
+## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> Comp.School
 <b>Google Cloud Platform, Firebase, PostgreSQL, Gemini API, TypeScript, JSON </b><br>
 - Used by real students during exam season. The product provides access to 24/7 exam practise, allowing users to choose between self-assessment or instant AI feedback. Leading to more impactful teaching and learning experience.
+- 
 - It is a multi-service platform that wires authentication, a database, an LLM feedback layer and interactive Python, SQL and flowchart editors into one product.
-- Live at [examhost.live](https://examhost.live/).
+- Live at [comp.school](https://comp.school/).
+- Component Library is published here at [library.comp.school](https://library.comp.school/).
 
 
 <img width="500" alt="Image" src="https://github.com/user-attachments/assets/f238993e-1e5a-4bb9-ae37-e2de255b393b" />
