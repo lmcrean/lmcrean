@@ -30,7 +30,7 @@ flowchart LR
     App --> DB[(localStorage)]
     DB[(localStorage)] --> DB2[(postgreSQL)]
     Editors --> ASS{user choice}
-    ASS --> LLM["LLM feedback layer<br/>Gemini API"]
+    ASS --> LLM["LLM feedback layer<br/>OpenAI API"]
     ASS --> SA["Self-assess · Typescript"]
     SA --> DB
     LLM --> DB
