@@ -24,7 +24,7 @@ All of the following projects are currently available for beta testing. I own th
 
 ```mermaid
 flowchart LR
-    Student([Student]) --> Auth[Firebase Auth]
+    Student([Student]) --> Auth[Auth]
     Auth --> App[Web app · TypeScript]
     App --> Editors["Exam Questions with <br>Interactive editors: Python · SQL · Flowchart · Image annotation"]
     App --> DB[(localStorage)]
