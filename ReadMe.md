@@ -1,8 +1,6 @@
 # Laurie Crean
 
-I design and ship working, multi-service software systems, and I can explain how they work to people who do not speak the jargon. I build fast by directing AI coding agents, bringing engineering judgment to know when the output is right, when an architecture holds together, and when an integration works end to end.
-
-I currently teach Computer Science to public exam groups, turning dense technical ideas into something people can act on.
+Head of Computer Science at a secondary school.
 
 Based in London. Reach me at lmcrean@gmail.com or on LinkedIn at [in/lcrean](https://www.linkedin.com/in/lcrean).
 
