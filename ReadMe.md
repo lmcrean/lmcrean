@@ -13,30 +13,6 @@ All of the following projects are currently available for beta testing. I own th
 - Live at [comp.school](https://comp.school).
 - Updated regularly. Check the landing page for the latest updates.
 
-<img width="500" alt="Network Build: choosing star or mesh for a police force's stations" src="https://ik.imagekit.io/rhuy0xdja/comp-school/pr-screenshots/pr-1976/358fca2/05-decide-topology.png" />
-
-<img width="500" alt="Hidden Computers: a kitchen scanned for embedded systems" src="https://ik.imagekit.io/rhuy0xdja/comp-school/pr-screenshots/pr-1887/2216df2/11-kitchen-xray-all.png" />
-
-<img width="500" alt="Coding Playground: an if statement challenge in the space theme" src="https://ik.imagekit.io/rhuy0xdja/comp-school/pr-screenshots/pr-1774/81ee1b5/if-space-04.png" />
-
-<br>
-
-```mermaid
-flowchart LR
-    User([Student or teacher]) --> Platform[Platform launcher · Auth]
-    Platform --> Games[Topic games]
-    Platform --> Drills[Topic Drills]
-    Platform --> Coding["Coding Playground<br/>Python · SQL in the browser"]
-    Platform --> Papers[Past Papers]
-    Papers --> Marking[Marking]
-    Games --> DB[(PostgreSQL)]
-    Drills --> DB
-    Coding --> DB
-    Marking --> DB
-    DB --> Printouts[Printouts · student, topic and exam reports]
-```
-
-
 # Open Source Contributions
 
 I have worked inside large production codebases at major engineering organisations, across Java, Go, TypeScript, PHP and Clojure. Each contribution meant reading an unfamiliar codebase, locating a real defect or gap, and getting a fix through skeptical maintainer review. The following have all been approved in production (link provided) and now run across millions of business applications.
