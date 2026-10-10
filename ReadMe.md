@@ -15,7 +15,6 @@ All of the following projects are currently available for beta testing. I own th
 - Used by real students during exam season. The product provides access to 24/7 exam practise, allowing users to choose between self-assessment or instant AI feedback. Leading to more impactful teaching and learning experience.
 - 
 - It is a multi-service platform that wires authentication, a database, an LLM feedback layer and interactive Python, SQL and flowchart editors into one product.
-- Component Library is published here at [library.comp.school](https://library.comp.school/).
 
 
 <img width="500" alt="Image" src="https://github.com/user-attachments/assets/f238993e-1e5a-4bb9-ae37-e2de255b393b" />
