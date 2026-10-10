@@ -8,7 +8,7 @@ Based in London. Reach me at lmcrean@gmail.com or on LinkedIn at [in/lcrean](htt
 <b>Cloudflare, PostgreSQL, OpenAI API, Claude Code, TypeScript, JSON </b><br>
 - Live at [comp.school](https://comp.school).
 - Updated regularly. Check the landing page for the latest updates.
-- 200+ users since launch
+- 150+ regular users since launch.
 
 # Open Source Contributions (2025-26)
 
