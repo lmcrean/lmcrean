@@ -4,18 +4,15 @@ Head of Computer Science at a secondary school.
 
 Based in London. Reach me at lmcrean@gmail.com or on LinkedIn at [in/lcrean](https://www.linkedin.com/in/lcrean).
 
-# My Projects
-
-All of the following projects are currently available for beta testing. I own the architecture and the integration between the services. Contact me for access.
-
-## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> Comp.School
+## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> Comp.School (2026-Present)
 <b>Cloudflare, PostgreSQL, OpenAI API, Claude Code, TypeScript, JSON </b><br>
 - Live at [comp.school](https://comp.school).
 - Updated regularly. Check the landing page for the latest updates.
+- 200+ users since launch
 
-# Open Source Contributions
+# Open Source Contributions (2025-26)
 
-I have worked inside large production codebases at major engineering organisations, across Java, Go, TypeScript, PHP and Clojure. Each contribution meant reading an unfamiliar codebase, locating a real defect or gap, and getting a fix through skeptical maintainer review. The following have all been approved in production (link provided) and now run across millions of business applications.
+The following have all been approved in production (link provided) and now run across millions of business applications.
 
 ## <img src="https://github.com/google.png" width="24" alt="Google"> Google
 
