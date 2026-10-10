@@ -9,29 +9,35 @@ Based in London. Reach me at lmcrean@gmail.com or on LinkedIn at [in/lcrean](htt
 All of the following projects are currently available for beta testing. I own the architecture and the integration between the services. Contact me for access.
 
 ## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> Comp.School
-<b>Cloudflare, PostgreSQL, OpenAI API, TypeScript, JSON </b><br>
-- Used by real students during exam season. The product provides access to 24/7 exam practise, allowing users to choose between self-assessment or instant AI feedback. Leading to more impactful teaching and learning experience.
-- 
-- It is a multi-service platform that wires authentication, a database, an LLM feedback layer and interactive Python, SQL and flowchart editors into one product.
+<b>Cloudflare, PostgreSQL, TypeScript, React, Python (Pyodide), Turborepo</b><br>
+- Used by real students during exam season, covering the OCR GCSE Computer Science (J277) specification.
+- **Topic games:** picture-led games for each part of the spec, such as Network Build (design a network on a budget, then trace a packet across it), Hidden Computers (spot embedded systems with x-ray goggles) and Upgrade Bay (tune a CPU's clock speed, cores and cache).
+- **Topic Drills:** flashcards, matching, fill in the blanks and Frayer models, with progress tracked from New to Mastered.
+- **Coding Playground:** Python and SQL challenges run in the browser, with sixteen learner-chosen themes, hints before answers and a Code from scratch lane.
+- **Past Papers, Marking and Printouts:** students sit exam papers, teachers mark scanned scripts beside a transcript, and the results become printable student, topic and exam reports.
+- A pnpm/Turborepo monorepo of small Cloudflare apps sharing authentication, a PostgreSQL record and a design system.
 
+<img width="500" alt="Network Build: choosing star or mesh for a police force's stations" src="https://ik.imagekit.io/rhuy0xdja/comp-school/pr-screenshots/pr-1976/358fca2/05-decide-topology.png" />
 
-<img width="500" alt="Image" src="https://github.com/user-attachments/assets/f238993e-1e5a-4bb9-ae37-e2de255b393b" />
+<img width="500" alt="Hidden Computers: a kitchen scanned for embedded systems" src="https://ik.imagekit.io/rhuy0xdja/comp-school/pr-screenshots/pr-1887/2216df2/11-kitchen-xray-all.png" />
+
+<img width="500" alt="Coding Playground: an if statement challenge in the space theme" src="https://ik.imagekit.io/rhuy0xdja/comp-school/pr-screenshots/pr-1774/81ee1b5/if-space-04.png" />
 
 <br>
 
 ```mermaid
 flowchart LR
-    Student([Student]) --> Auth[Auth]
-    Auth --> App[Web app · TypeScript]
-    App --> Editors["Exam Questions with <br>Interactive editors: Python · SQL · Flowchart · Image annotation"]
-    App --> DB[(localStorage)]
-    DB[(localStorage)] --> DB2[(postgreSQL)]
-    Editors --> ASS{user choice}
-    ASS --> LLM["LLM feedback layer<br/>OpenAI API"]
-    ASS --> SA["Self-assess · Typescript"]
-    SA --> DB
-    LLM --> DB
-    DB2 --> App
+    User([Student or teacher]) --> Platform[Platform launcher · Auth]
+    Platform --> Games[Topic games]
+    Platform --> Drills[Topic Drills]
+    Platform --> Coding["Coding Playground<br/>Python · SQL in the browser"]
+    Platform --> Papers[Past Papers]
+    Papers --> Marking[Marking]
+    Games --> DB[(PostgreSQL)]
+    Drills --> DB
+    Coding --> DB
+    Marking --> DB
+    DB --> Printouts[Printouts · student, topic and exam reports]
 ```
 
 
