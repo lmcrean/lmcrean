@@ -12,7 +12,7 @@ Based in London. Reach me at lmcrean@gmail.com or on LinkedIn at [in/lcrean](htt
 
 # Open Source Contributions (2025-26)
 
-The following have all been approved in production (link provided) and now run across millions of business applications.
+The following have all been approved in production and now run across millions of business applications.
 
 ## <img src="https://github.com/google.png" width="24" alt="Google"> Google
 
