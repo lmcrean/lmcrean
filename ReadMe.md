@@ -4,7 +4,7 @@ Head of Computer Science at a secondary school.
 
 Based in London. Reach me at lmcrean@gmail.com or on LinkedIn at [in/lcrean](https://www.linkedin.com/in/lcrean).
 
-## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> Comp.School (2026-Present)
+# <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> Comp.School (2026-Present)
 <b>Cloudflare, PostgreSQL, OpenAI API, Claude Code, TypeScript, JSON </b><br>
 - Live at [comp.school](https://comp.school).
 - Updated regularly. Check the landing page for the latest updates.
