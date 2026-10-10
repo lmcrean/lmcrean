@@ -9,7 +9,7 @@ Based in London. Reach me at lmcrean@gmail.com or on LinkedIn at [in/lcrean](htt
 All of the following projects are currently available for beta testing. I own the architecture and the integration between the services. Contact me for access.
 
 ## <img width="35" alt="Image" src="https://github.com/user-attachments/assets/dbc5bd68-3f93-4739-99dc-4849ca0d94e8" /> Comp.School
-<b>Cloudflare, PostgreSQL, OpenAI API, TypeScript, JSON </b><br>
+<b>Cloudflare, PostgreSQL, OpenAI API, Claude Code, TypeScript, JSON </b><br>
 - Live at [comp.school](https://comp.school).
 - Updated regularly. Check the landing page for the latest updates.
 
